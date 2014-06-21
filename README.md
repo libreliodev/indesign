@@ -1,2 +1,1 @@
-acrobat
-=======
+Plug-in for Acrobat
