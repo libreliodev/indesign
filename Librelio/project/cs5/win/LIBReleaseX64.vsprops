@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioPropertySheet ProjectType="Visual C++" Version="8.00" Name="ReleaseX64" InheritedPropertySheets="..\..\..\..\id7sdk\build\win\prj\ReleaseX64.vsprops">
+   <UserMacro Name="ID_SDK_DIR" Value="..\..\..\..\id7sdk"/>
+</VisualStudioPropertySheet>
