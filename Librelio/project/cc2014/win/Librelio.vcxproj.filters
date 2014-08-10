@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+   <ItemGroup>
+      <Filter Include="Source Files">
+         <UniqueIdentifier>{78120e3d-d0ab-4f9e-8a3a-c5e6c5ed0b2c}</UniqueIdentifier>
+      </Filter>
+      <Filter Include="Source Files\Plugin">
+         <UniqueIdentifier>{29e08cac-b659-428b-bf02-c70f84b41ddf}</UniqueIdentifier>
+      </Filter>
+      <Filter Include="Header Files">
+         <UniqueIdentifier>{7b823eb7-8f35-4529-a4c1-555b53468c58}</UniqueIdentifier>
+      </Filter>
+      <Filter Include="Resource Files">
+         <UniqueIdentifier>{4da94837-4922-4930-b2ec-472d16090ed6}</UniqueIdentifier>
+      </Filter>
+   </ItemGroup>
+   <ItemGroup>
+      <ClCompile Include="..\..\..\source\LIBActionComponent.cpp">
+         <Filter>Source Files</Filter>
+      </ClCompile>
+      <ClCompile Include="$(id_sdk_dir)\source\public\libs\publiclib\statics\PlugInStatics.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+      <ClCompile Include="$(ID_SDK_DIR)\source\sdksamples\common\SDKPlugInEntrypoint.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+      <ClCompile Include="..\..\..\source\LIBID.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+      <ClCompile Include="..\..\..\source\LIBNoStrip.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+      <ClCompile Include="..\..\..\source\TriggerResourceDeps.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+      <ClCompile Include="$(id_sdk_dir)\source\precomp\msvc\VCPlugInHeaders.cpp">
+         <Filter>Source Files\Plugin</Filter>
+      </ClCompile>
+   </ItemGroup>
+   <ItemGroup>
+      <ClInclude Include="..\..\..\source\LIBID.h">
+         <Filter>Header Files</Filter>
+      </ClInclude>
+      <ClInclude Include="..\..\..\source\LIBFactoryList.h">
+         <Filter>Header Files</Filter>
+      </ClInclude>
+   </ItemGroup>
+   <ItemGroup>
+      <ResourceCompile Include="..\..\..\source\LIB.rc">
+         <Filter>Resource Files</Filter>
+      </ResourceCompile>
+   </ItemGroup>
+   <ItemGroup>
+      <CustomBuild Include="..\..\..\source\LIB.fr">
+         <Filter>Resource Files</Filter>
+      </CustomBuild>
+   </ItemGroup>
+</Project>

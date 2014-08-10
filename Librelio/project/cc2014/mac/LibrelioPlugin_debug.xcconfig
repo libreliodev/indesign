@@ -1,0 +1,9 @@
+
+ID_BUILD_CONFIG_PLUGIN_DEBUG = YES
+
+// InDesign core library build settings (based on common build settings)
+#include "../../../../id10sdk/build/mac/prj/_shared_build_settings/common_debug.xcconfig"
+
+FRAMEWORK_SEARCH_PATHS = $(ID_SDK_ROOT)/build/mac/debug_cocoa64/packagefolder/contents/macos $(ID_SDK_ROOT)/build/mac/debug_cocoa64/packagefolder/contents/Frameworks
+
+LIBRARY_SEARCH_PATHS = $(ID_SDK_ROOT)/build/mac/debug_cocoa64/packagefolder/contents/macos/libs

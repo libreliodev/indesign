@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000001 /* LIBActionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFF /* LIBActionComponent.cpp */; };
+		000000000000000000000002 /* LIBActionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFF /* LIBActionComponent.cpp */; };
+		C710C9801997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C710C97F1997C8B700CD8228 /* LIBSelectionObserver.cpp */; };
+		C710C9811997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C710C97F1997C8B700CD8228 /* LIBSelectionObserver.cpp */; };
+		F957085215C90B3B00C95573 /* LIB.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* LIB.fr */; };
+		F957085415C90B3B00C95573 /* LIBNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* LIBNoStrip.cpp */; };
+		F957085515C90B3B00C95573 /* LIBID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* LIBID.cpp */; };
+		F957085815C90B3B00C95573 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		F957086415C90B3E00C95573 /* LIB.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* LIB.fr */; };
+		F957086615C90B3E00C95573 /* LIBNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* LIBNoStrip.cpp */; };
+		F957086715C90B3E00C95573 /* LIBID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* LIBID.cpp */; };
+		F957086A15C90B3E00C95573 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		F957087415C90B5100C95573 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F957084D15C90B2D00C95573 /* InDesignModelAndUI.framework */; };
+		F957087515C90B5100C95573 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F957084E15C90B2D00C95573 /* libPublicPlugIn.a */; };
+		F957087615C90B5D00C95573 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F957084B15C90B2D00C95573 /* InDesignModelAndUI.framework */; };
+		F957087715C90B5D00C95573 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F957084C15C90B2D00C95573 /* libPublicPlugIn.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		F957085D15C90B3B00C95573 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "$ID_SDK_ROOT/devtools/bin/odfrc-cmd -d DEBUG $ODFRC_ADDITIONAL_FLAGS -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+		F957086F15C90B3E00C95573 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "$ID_SDK_ROOT/devtools/bin/odfrc-cmd -d RELEASE $ODFRC_ADDITIONAL_FLAGS -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		00000000000000000000FFFF /* LIBActionComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LIBActionComponent.cpp; path = ../../../source/LIBActionComponent.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SDKPlugInEntrypoint.cpp; path = ../../../../id10sdk/source/sdksamples/common/SDKPlugInEntrypoint.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECD08840E9300D809E1 /* LIBNoStrip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LIBNoStrip.cpp; path = ../../../source/LIBNoStrip.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECE08840E9400D809E1 /* LIBID.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LIBID.cpp; path = ../../../source/LIBID.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECF08840E9400D809E1 /* LIBID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LIBID.h; path = ../../../source/LIBID.h; sourceTree = SOURCE_ROOT; };
+		4B05EED108840E9500D809E1 /* LIB.fr */ = {isa = PBXFileReference; lastKnownFileType = text; name = LIB.fr; path = ../../../source/LIB.fr; sourceTree = SOURCE_ROOT; };
+		77355572120250EF00E6FC19 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../id10sdk/source/sdksamples/common/Info.plist; sourceTree = SOURCE_ROOT; };
+		77D687F1113861B500D56A9C /* _shared_build_settings/cocoa_ui_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _shared_build_settings/cocoa_ui_debug.xcconfig; sourceTree = "<group>"; };
+		77D687F2113861B500D56A9C /* _shared_build_settings/cocoa_ui_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _shared_build_settings/cocoa_ui_release.xcconfig; sourceTree = "<group>"; };
+		77D687F3113861B500D56A9C /* LibrelioPlugin_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LibrelioPlugin_debug.xcconfig; sourceTree = "<group>"; };
+		77D687F4113861B500D56A9C /* LibrelioPlugin_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LibrelioPlugin_release.xcconfig; sourceTree = "<group>"; };
+		7FE5845808AD6DB8007DB654 /* _shared_build_settings/common_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = _shared_build_settings/common_release.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845908AD6DB8007DB654 /* _shared_build_settings/common_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = _shared_build_settings/common_debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845A08AD6DB8007DB654 /* LibrelioPlugin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = LibrelioPlugin.xcconfig; sourceTree = SOURCE_ROOT; };
+		C710C97E1997C89E00CD8228 /* LIBFactoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LIBFactoryList.h; path = ../../../source/LIBFactoryList.h; sourceTree = "<group>"; };
+		C710C97F1997C8B700CD8228 /* LIBSelectionObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LIBSelectionObserver.cpp; path = ../../../source/LIBSelectionObserver.cpp; sourceTree = "<group>"; };
+		F957084B15C90B2D00C95573 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../../id10sdk/build/mac/debug_cocoa64/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		F957084C15C90B2D00C95573 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../../id10sdk/build/mac/debug_cocoa64/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+		F957084D15C90B2D00C95573 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../../id10sdk/build/mac/release_cocoa64/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		F957084E15C90B2D00C95573 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../../id10sdk/build/mac/release_cocoa64/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+		F957086015C90B3B00C95573 /* Librelio.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Librelio.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		F957087215C90B3E00C95573 /* Librelio.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Librelio.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F957085915C90B3B00C95573 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F957087615C90B5D00C95573 /* InDesignModelAndUI.framework in Frameworks */,
+				F957087715C90B5D00C95573 /* libPublicPlugIn.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F957086B15C90B3E00C95573 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F957087415C90B5100C95573 /* InDesignModelAndUI.framework in Frameworks */,
+				F957087515C90B5100C95573 /* libPublicPlugIn.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B05EEAD08840E8D00D809E1 = {
+			isa = PBXGroup;
+			children = (
+				4B05EEC708840E8D00D809E1 /* Source */,
+				4B05EED008840E9400D809E1 /* Resources */,
+				7F52248408AFCE1F00139994 /* xcconfig */,
+				F957084215C90B2D00C95573 /* InDesign Libraries */,
+				4B05EEBB08840E8D00D809E1 /* Products */,
+				77355572120250EF00E6FC19 /* Info.plist */,
+			);
+			sourceTree = "<group>";
+		};
+		4B05EEBB08840E8D00D809E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F957086015C90B3B00C95573 /* Librelio.InDesignPlugin */,
+				F957087215C90B3E00C95573 /* Librelio.InDesignPlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B05EEC708840E8D00D809E1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C710C97E1997C89E00CD8228 /* LIBFactoryList.h */,
+				C710C97F1997C8B700CD8228 /* LIBSelectionObserver.cpp */,
+				00000000000000000000FFFF /* LIBActionComponent.cpp */,
+				4B05EECB08840E9100D809E1 /* Plugin */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		4B05EECB08840E9100D809E1 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */,
+				4B05EECD08840E9300D809E1 /* LIBNoStrip.cpp */,
+				4B05EECF08840E9400D809E1 /* LIBID.h */,
+				4B05EECE08840E9400D809E1 /* LIBID.cpp */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
+		4B05EED008840E9400D809E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EED108840E9500D809E1 /* LIB.fr */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7F52248408AFCE1F00139994 /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7FE5845808AD6DB8007DB654 /* _shared_build_settings/common_release.xcconfig */,
+				7FE5845908AD6DB8007DB654 /* _shared_build_settings/common_debug.xcconfig */,
+				7FE5845A08AD6DB8007DB654 /* LibrelioPlugin.xcconfig */,
+				77D687F1113861B500D56A9C /* _shared_build_settings/cocoa_ui_debug.xcconfig */,
+				77D687F2113861B500D56A9C /* _shared_build_settings/cocoa_ui_release.xcconfig */,
+				77D687F3113861B500D56A9C /* LibrelioPlugin_debug.xcconfig */,
+				77D687F4113861B500D56A9C /* LibrelioPlugin_release.xcconfig */,
+			);
+			name = xcconfig;
+			sourceTree = "<group>";
+		};
+		F957084215C90B2D00C95573 /* InDesign Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				F957084915C90B2D00C95573 /* For Cocoa64 */,
+			);
+			name = "InDesign Libraries";
+			sourceTree = "<group>";
+		};
+		F957084915C90B2D00C95573 /* For Cocoa64 */ = {
+			isa = PBXGroup;
+			children = (
+				F957084D15C90B2D00C95573 /* InDesignModelAndUI.framework */,
+				F957084E15C90B2D00C95573 /* libPublicPlugIn.a */,
+				F957084A15C90B2D00C95573 /* Debug */,
+			);
+			name = "For Cocoa64";
+			sourceTree = "<group>";
+		};
+		F957084A15C90B2D00C95573 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				F957084B15C90B2D00C95573 /* InDesignModelAndUI.framework */,
+				F957084C15C90B2D00C95573 /* libPublicPlugIn.a */,
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F957085015C90B3B00C95573 /* Debug_Cocoa64 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F957085E15C90B3B00C95573 /* Build configuration list for PBXNativeTarget "Debug_Cocoa64" */;
+			buildPhases = (
+				F957085115C90B3B00C95573 /* Sources */,
+				F957085915C90B3B00C95573 /* Frameworks */,
+				F957085A15C90B3B00C95573 /* Rez */,
+				F957085B15C90B3B00C95573 /* Resources */,
+				F957085C15C90B3B00C95573 /* ShellScript */,
+			);
+			buildRules = (
+				F957085D15C90B3B00C95573 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Debug_Cocoa64;
+			productName = Debug;
+			productReference = F957086015C90B3B00C95573 /* Librelio.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+		F957086215C90B3E00C95573 /* Release_Cocoa64 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F957087015C90B3E00C95573 /* Build configuration list for PBXNativeTarget "Release_Cocoa64" */;
+			buildPhases = (
+				F957086315C90B3E00C95573 /* Sources */,
+				F957086B15C90B3E00C95573 /* Frameworks */,
+				F957086C15C90B3E00C95573 /* Rez */,
+				F957086D15C90B3E00C95573 /* Resources */,
+				F957086E15C90B3E00C95573 /* ShellScript */,
+			);
+			buildRules = (
+				F957086F15C90B3E00C95573 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Release_Cocoa64;
+			productName = Release;
+			productReference = F957087215C90B3E00C95573 /* Librelio.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B05EEAF08840E8D00D809E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "Librelio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 4B05EEAD08840E8D00D809E1;
+			productRefGroup = 4B05EEBB08840E8D00D809E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F957085015C90B3B00C95573 /* Debug_Cocoa64 */,
+				F957086215C90B3E00C95573 /* Release_Cocoa64 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F957085B15C90B3B00C95573 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F957086D15C90B3E00C95573 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		F957085A15C90B3B00C95573 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F957086C15C90B3E00C95573 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F957085C15C90B3B00C95573 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../../../../id10sdk/build/mac/packagescripts/copyResources.sh;
+			showEnvVarsInLog = 0;
+		};
+		F957086E15C90B3E00C95573 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../../../../id10sdk/build/mac/packagescripts/copyResources.sh;
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F957085115C90B3B00C95573 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000002 /* LIBActionComponent.cpp in Sources */,
+				F957085215C90B3B00C95573 /* LIB.fr in Sources */,
+				F957085415C90B3B00C95573 /* LIBNoStrip.cpp in Sources */,
+				F957085515C90B3B00C95573 /* LIBID.cpp in Sources */,
+				C710C9801997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */,
+				F957085815C90B3B00C95573 /* SDKPlugInEntrypoint.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F957086315C90B3E00C95573 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000001 /* LIBActionComponent.cpp in Sources */,
+				F957086415C90B3E00C95573 /* LIB.fr in Sources */,
+				F957086615C90B3E00C95573 /* LIBNoStrip.cpp in Sources */,
+				F957086715C90B3E00C95573 /* LIBID.cpp in Sources */,
+				C710C9811997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */,
+				F957086A15C90B3E00C95573 /* SDKPlugInEntrypoint.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B05EEB108840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845A08AD6DB8007DB654 /* LibrelioPlugin.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(ID_BUILT_SDK_SAMPLES_DIR)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS)",
+					$ID_SDK_ROOT/source/public/interfaces/tables,
+					$ID_SDK_ROOT/source/public/components/widgetbin/includes,
+					$ID_SDK_ROOT/source/public/interfaces/workgroup,
+					$ID_SDK_ROOT/source/public/interfaces/interactive,
+					$ID_SDK_ROOT/source/public/interfaces/interactive/ui,
+					$ID_SDK_ROOT/source/public/interfaces/colormgmt,
+					$ID_SDK_ROOT/source/public/interfaces/incopy,
+					$ID_SDK_ROOT/source/public/interfaces/cjk,
+					$ID_SDK_ROOT/source/public/facades/graphics,
+					$ID_SDK_ROOT/source/public/facades/text,
+					$ID_SDK_ROOT/source/public/facades/layout,
+					$ID_SDK_ROOT/source/public/components/publiclib/plugins,
+					$ID_SDK_ROOT/source/public/components/publiclib/files,
+					$ID_SDK_ROOT/source/public/components/publiclib/objectmodel,
+					$ID_SDK_ROOT/source/sdksamples/common,
+					$ID_SDK_ROOT/external/afl/includes,
+					../../../source,
+				);
+				INFOPLIST_FILE = $ID_SDK_ROOT/source/sdksamples/common/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				PLC_OUTPUT_TYPE = InDa;
+				PRODUCT_NAME = Librelio;
+			};
+			name = Default;
+		};
+		F957085F15C90B3B00C95573 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D687F3113861B500D56A9C /* LibrelioPlugin_debug.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../../../build/cc2014/mac/debug";
+				PLC_GENERATE_PKGINFO_FILE = "$(inherited)";
+			};
+			name = Default;
+		};
+		F957087115C90B3E00C95573 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D687F4113861B500D56A9C /* LibrelioPlugin_release.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../../../build/cc2014/mac/release";
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "Librelio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEB108840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = Default;
+		};
+		F957085E15C90B3B00C95573 /* Build configuration list for PBXNativeTarget "Debug_Cocoa64" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F957085F15C90B3B00C95573 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		F957087015C90B3E00C95573 /* Build configuration list for PBXNativeTarget "Release_Cocoa64" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F957087115C90B3E00C95573 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B05EEAF08840E8D00D809E1 /* Project object */;
+}

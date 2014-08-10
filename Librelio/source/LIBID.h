@@ -107,7 +107,7 @@ DECLARE_PMID(kClassIDSpace, kLIBPanelWidgetBoss, kLIBPrefix + 1)
 
 // ImplementationIDs:
 DECLARE_PMID(kImplementationIDSpace, kLIBActionComponentImpl, kLIBPrefix + 0 )
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 1)
+DECLARE_PMID(kImplementationIDSpace, kLIBSelectionObserverImpl, kLIBPrefix + 1)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 2)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 3)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 4)
@@ -163,9 +163,10 @@ DECLARE_PMID(kActionIDSpace, kLIBPopupAboutThisActionID, kLIBPrefix + 3)//DECLAR
 
 // WidgetIDs:
 DECLARE_PMID(kWidgetIDSpace, kLIBPanelWidgetID, kLIBPrefix + 0)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 2)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 3)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 4)
+DECLARE_PMID(kWidgetIDSpace, kLIBLabelURLWidgetID, kLIBPrefix + 1)
+DECLARE_PMID(kWidgetIDSpace, kLIBTextBoxURLWidgetID, kLIBPrefix + 2)
+DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxFullScreenWidgetID, kLIBPrefix + 3)
+DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxAutoOpenWidgetID, kLIBPrefix + 4)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 5)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 6)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 7)
@@ -205,6 +206,10 @@ DECLARE_PMID(kWidgetIDSpace, kLIBPanelWidgetID, kLIBPrefix + 0)
 #define kLIBStaticTextKey kLIBStringPrefix	"kLIBStaticTextKey"
 #define kLIBInternalPopupMenuNameKey kLIBStringPrefix	"kLIBInternalPopupMenuNameKey"
 #define kLIBTargetMenuPath kLIBInternalPopupMenuNameKey
+// Panel strings:
+#define kLIBURLTextKey					kLIBStringPrefix	"kLIBURLTextKey"
+#define kLIBFullScreenTextKey					kLIBStringPrefix	"kLIBFullScreenTextKey"
+#define kLIBAutoOpenTextKey					kLIBStringPrefix	"kLIBAutoOpenTextKey"
 
 // Menu item positions:
 

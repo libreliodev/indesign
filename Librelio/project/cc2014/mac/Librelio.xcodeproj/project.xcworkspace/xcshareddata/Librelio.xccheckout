@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7412DD42-23D9-4052-9E8E-E30554FC160E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Librelio</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3B30ADAA-45B6-4341-8601-A61232098D70</key>
+		<string>https://github.com/libreliodev/indesign.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Librelio/project/cc2014/mac/Librelio.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3B30ADAA-45B6-4341-8601-A61232098D70</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/libreliodev/indesign.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3B30ADAA-45B6-4341-8601-A61232098D70</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3B30ADAA-45B6-4341-8601-A61232098D70</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LiberelioDev</string>
+		</dict>
+	</array>
+</dict>
+</plist>

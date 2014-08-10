@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+   <ItemGroup Label="ProjectConfigurations">
+      <ProjectConfiguration Include="Debug|Win32">
+         <Configuration>Debug</Configuration>
+         <Platform>Win32</Platform>
+      </ProjectConfiguration>
+      <ProjectConfiguration Include="Debug|x64">
+         <Configuration>Debug</Configuration>
+         <Platform>x64</Platform>
+      </ProjectConfiguration>
+      <ProjectConfiguration Include="Release|Win32">
+         <Configuration>Release</Configuration>
+         <Platform>Win32</Platform>
+      </ProjectConfiguration>
+      <ProjectConfiguration Include="Release|x64">
+         <Configuration>Release</Configuration>
+         <Platform>x64</Platform>
+      </ProjectConfiguration>
+   </ItemGroup>
+   <PropertyGroup Label="Globals">
+      <ProjectName>Librelio</ProjectName>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+      <ConfigurationType>DynamicLibrary</ConfigurationType>
+      <PlatformToolset>v110</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+      <ConfigurationType>DynamicLibrary</ConfigurationType>
+      <PlatformToolset>v110</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+      <ConfigurationType>DynamicLibrary</ConfigurationType>
+      <PlatformToolset>v110</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+      <ConfigurationType>DynamicLibrary</ConfigurationType>
+      <PlatformToolset>v110</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+   <ImportGroup Label="ExtensionSettings"/>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+      <Import Project="LIBReleaseWin32.sdk.props"/>
+   </ImportGroup>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+      <Import Project="LIBDebugWin32.sdk.props"/>
+   </ImportGroup>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+      <Import Project="LIBReleaseX64.sdk.props"/>
+   </ImportGroup>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform"/>
+      <Import Project="LIBDebugX64.sdk.props"/>
+   </ImportGroup>
+   <PropertyGroup Label="UserMacros"/>
+   <PropertyGroup>
+      <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\build\cc2014\win\debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\objD\Librelio\</IntDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">\Librelio\</IntDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\build\cc2014\win\release\sdk\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\objR\Librelio\</IntDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">\Librelio\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName).sdk</TargetName>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName).sdk</TargetName>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName).sdk</TargetName>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName).sdk</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.pln</TargetExt>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.pln</TargetExt>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.pln</TargetExt>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.pln</TargetExt>
+   </PropertyGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      <Midl>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <MkTypLibCompatible>true</MkTypLibCompatible>
+         <TargetEnvironment>Win32</TargetEnvironment>
+         <TypeLibraryName>$(IntDir)Librelio.tlb</TypeLibraryName>
+         <HeaderFileName/>
+      </Midl>
+      <ClCompile>
+         <AdditionalOptions>/vmg @"Libreliocpp.rsp"</AdditionalOptions>
+         <PrecompiledHeaderOutputFile>$(IntDir)Librelio.pch</PrecompiledHeaderOutputFile>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;DEBUG;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <PrecompiledHeader>Use</PrecompiledHeader>
+         <PrecompiledHeaderFile>VCPlugInHeaders.h</PrecompiledHeaderFile>
+         <ObjectFileName>$(IntDir)</ObjectFileName>
+      </ClCompile>
+      <ResourceCompile>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture>0x0409</Culture>
+      </ResourceCompile>
+      <PreLinkEvent>
+         <Command>merge_res.cmd "$(IntDir)"  LIB &amp; echo Deleting old resources... &amp; del /f /s "$(TargetDir)($(TargetName) Resources)\"*.idrc &gt; $(IntDir)prevDeletedResources.txt &amp;  xcopy /Q /E "$(IntDir)"*.idrc "$(TargetDir)($(TargetName) Resources)\" /Y</Command>
+      </PreLinkEvent>
+      <Link>
+         <AdditionalDependencies>$(ID_SDK_DIR)\build\win\objd\PMRuntime.lib; $(ID_SDK_DIR)\build\win\objd\Public.lib; $(ID_SDK_DIR)\build\win\objd\WidgetBin.lib</AdditionalDependencies>
+         <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+         <ProgramDatabaseFile>..\..\..\build\cc2014\win\debug\Librelio.pdb</ProgramDatabaseFile>
+         <ImportLibrary>$(LIB_DIR)\Librelio/Librelio.lib</ImportLibrary>
+      </Link>
+      <PostBuildEvent>
+         <Command>restore_res.cmd "$(IntDir)"  LIB</Command>
+      </PostBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      <Midl>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <MkTypLibCompatible>true</MkTypLibCompatible>
+         <TargetEnvironment>X64</TargetEnvironment>
+         <TypeLibraryName>$(IntDir)Librelio.tlb</TypeLibraryName>
+         <HeaderFileName/>
+      </Midl>
+      <ClCompile>
+         <AdditionalOptions>/vmg @"Libreliocpp.rsp"</AdditionalOptions>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;DEBUG;STRICT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <PrecompiledHeader>Use</PrecompiledHeader>
+         <PrecompiledHeaderFile>VCPlugInHeaders.h</PrecompiledHeaderFile>
+         <PrecompiledHeaderOutputFile>$(IntDir)Librelio.pch</PrecompiledHeaderOutputFile>
+         <ObjectFileName>$(IntDir)</ObjectFileName>
+      </ClCompile>
+      <ResourceCompile>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture>0x0409</Culture>
+      </ResourceCompile>
+      <PreLinkEvent>
+         <Command>merge_res.cmd "$(IntDir)"  LIB &amp; echo Deleting old resources... &amp; del /f /s "$(TargetDir)($(TargetName) Resources)\"*.idrc &gt; $(IntDir)prevDeletedResources.txt &amp;  xcopy /Q /E "$(IntDir)"*.idrc "$(TargetDir)($(TargetName) Resources)\" /Y</Command>
+      </PreLinkEvent>
+      <Link>
+         <AdditionalDependencies>$(ID_SDK_DIR)\build\win\objdx64\PMRuntime.lib; $(ID_SDK_DIR)\build\win\objdx64\Public.lib; $(ID_SDK_DIR)\build\win\objdx64\WidgetBin.lib</AdditionalDependencies>
+         <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+         <ProgramDatabaseFile>\Librelio.pdb</ProgramDatabaseFile>
+         <ImportLibrary>$(LIB_DIR)\Librelio/Librelio.lib</ImportLibrary>
+      </Link>
+      <PostBuildEvent>
+         <Command>restore_res.cmd "$(IntDir)"  LIB</Command>
+      </PostBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      <Midl>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <MkTypLibCompatible>true</MkTypLibCompatible>
+         <TargetEnvironment>Win32</TargetEnvironment>
+         <TypeLibraryName>$(IntDir)Librelio.tlb</TypeLibraryName>
+         <HeaderFileName/>
+      </Midl>
+      <ClCompile>
+         <AdditionalOptions>/vmg @"Libreliocpp.rsp"</AdditionalOptions>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;STRICT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <StringPooling>true</StringPooling>
+         <PrecompiledHeader>Use</PrecompiledHeader>
+         <PrecompiledHeaderFile>VCPlugInHeaders.h</PrecompiledHeaderFile>
+         <PrecompiledHeaderOutputFile>$(IntDir)Librelio.pch</PrecompiledHeaderOutputFile>
+         <ObjectFileName>$(IntDir)</ObjectFileName>
+      </ClCompile>
+      <ResourceCompile>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture>0x0409</Culture>
+      </ResourceCompile>
+      <PreLinkEvent>
+         <Command>merge_res.cmd "$(IntDir)"  LIB &amp; echo Deleting old resources... &amp; del /f /s "$(TargetDir)($(TargetName) Resources)\"*.idrc &gt; $(IntDir)prevDeletedResources.txt &amp;  xcopy /Q /E "$(IntDir)"*.idrc "$(TargetDir)($(TargetName) Resources)\" /Y</Command>
+      </PreLinkEvent>
+      <Link>
+         <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
+         <AdditionalDependencies>$(ID_SDK_DIR)\build\win\objr\PMRuntime.lib; $(ID_SDK_DIR)\build\win\objr\Public.lib; $(ID_SDK_DIR)\build\win\objr\WidgetBin.lib</AdditionalDependencies>
+         <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+         <ProgramDatabaseFile>..\..\..\build\cc2014\win\release\sdk\Librelio.pdb</ProgramDatabaseFile>
+         <ImportLibrary>$(LIB_DIR)\Librelio/Librelio.lib</ImportLibrary>
+      </Link>
+      <PostBuildEvent>
+         <Command>restore_res.cmd "$(IntDir)"  LIB</Command>
+      </PostBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      <Midl>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <MkTypLibCompatible>true</MkTypLibCompatible>
+         <TargetEnvironment>X64</TargetEnvironment>
+         <TypeLibraryName>$(IntDir)Librelio.tlb</TypeLibraryName>
+         <HeaderFileName/>
+      </Midl>
+      <ClCompile>
+         <AdditionalOptions>/vmg @"Libreliocpp.rsp"</AdditionalOptions>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;STRICT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <StringPooling>true</StringPooling>
+         <PrecompiledHeader>Use</PrecompiledHeader>
+         <PrecompiledHeaderFile>VCPlugInHeaders.h</PrecompiledHeaderFile>
+         <PrecompiledHeaderOutputFile>$(IntDir)Librelio.pch</PrecompiledHeaderOutputFile>
+         <ObjectFileName>$(IntDir)</ObjectFileName>
+      </ClCompile>
+      <ResourceCompile>
+         <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture>0x0409</Culture>
+      </ResourceCompile>
+      <PreLinkEvent>
+         <Command>merge_res.cmd "$(IntDir)"  LIB &amp; echo Deleting old resources... &amp; del /f /s "$(TargetDir)($(TargetName) Resources)\"*.idrc &gt; $(IntDir)prevDeletedResources.txt &amp;  xcopy /Q /E "$(IntDir)"*.idrc "$(TargetDir)($(TargetName) Resources)\" /Y</Command>
+      </PreLinkEvent>
+      <Link>
+         <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
+         <AdditionalDependencies>$(ID_SDK_DIR)\build\win\objrx64\PMRuntime.lib; $(ID_SDK_DIR)\build\win\objrx64\Public.lib; $(ID_SDK_DIR)\build\win\objrx64\WidgetBin.lib</AdditionalDependencies>
+         <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+         <ProgramDatabaseFile>\Librelio.pdb</ProgramDatabaseFile>
+         <ImportLibrary>$(LIB_DIR)\Librelio/Librelio.lib</ImportLibrary>
+      </Link>
+      <PostBuildEvent>
+         <Command>restore_res.cmd "$(IntDir)"  LIB</Command>
+      </PostBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemGroup>
+      <ClCompile Include="..\..\..\source\LIBActionComponent.cpp"/>
+      <ClCompile Include="$(id_sdk_dir)\source\public\libs\publiclib\statics\PlugInStatics.cpp"/>
+      <ClCompile Include="$(ID_SDK_DIR)\source\sdksamples\common\SDKPlugInEntrypoint.cpp"/>
+      <ClCompile Include="..\..\..\source\LIBID.cpp"/>
+      <ClCompile Include="..\..\..\source\LIBNoStrip.cpp"/>
+      <ClCompile Include="..\..\..\source\TriggerResourceDeps.cpp"/>
+      <ClCompile Include="$(id_sdk_dir)\source\precomp\msvc\VCPlugInHeaders.cpp">
+         <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+         <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+         <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+         <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      </ClCompile>
+   </ItemGroup>
+   <ItemGroup>
+      <ClInclude Include="..\..\..\source\LIBID.h"/>
+      <ClInclude Include="..\..\..\source\LIBFactoryList.h"/>
+   </ItemGroup>
+   <ItemGroup>
+      <CustomBuild Include="..\..\..\source\LIB.fr">
+         <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+        odfrc $(ODFRC_ADDITIONAL_FLAGS) "%(FullPath)" -o "$(IntDir)%(Filename).fres" -d DEBUG  -i "..\..\..\source" @"Librelioodfrc.rsp"
+      </Command>
+         <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)TriggerResourceDeps.obj;%(AdditionalInputs)</AdditionalInputs>
+         <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).fres;%(Outputs)</Outputs>
+         <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        odfrc $(ODFRC_ADDITIONAL_FLAGS) "%(FullPath)" -o "$(IntDir)%(Filename).fres" -d DEBUG  -i "..\..\..\source" @"Librelioodfrc.rsp"
+      </Command>
+         <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)TriggerResourceDeps.obj;%(AdditionalInputs)</AdditionalInputs>
+         <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).fres;%(Outputs)</Outputs>
+         <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+        odfrc $(ODFRC_ADDITIONAL_FLAGS) "%(FullPath)" -o "$(IntDir)%(Filename).fres" -i "..\..\..\source" @"Librelioodfrc.rsp"
+      </Command>
+         <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)TriggerResourceDeps.obj;%(AdditionalInputs)</AdditionalInputs>
+         <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).fres;%(Outputs)</Outputs>
+         <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        odfrc $(ODFRC_ADDITIONAL_FLAGS) "%(FullPath)" -o "$(IntDir)%(Filename).fres" -i "..\..\..\source" @"Librelioodfrc.rsp"
+      </Command>
+         <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)TriggerResourceDeps.obj;%(AdditionalInputs)</AdditionalInputs>
+         <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).fres;%(Outputs)</Outputs>
+      </CustomBuild>
+   </ItemGroup>
+   <ItemGroup>
+      <ResourceCompile Include="..\..\..\source\LIB.rc">
+         <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">0x0809</Culture>
+         <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\source;..\..\..\source;$(ID_SDK_DIR)\source\precomp\msvc;$(ID_SDK_DIR)\source\public\includes;$(ID_SDK_DIR)\source\sdksamples\common;%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+         <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">0x0809</Culture>
+         <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\source;..\..\..\source;$(ID_SDK_DIR)\source\precomp\msvc;$(ID_SDK_DIR)\source\public\includes;$(ID_SDK_DIR)\source\sdksamples\common;%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+         <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">0x0809</Culture>
+         <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\source;..\..\..\source;$(ID_SDK_DIR)\source\precomp\msvc;$(ID_SDK_DIR)\source\public\includes;$(ID_SDK_DIR)\source\sdksamples\common;%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+         <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+         <Culture Condition="'$(Configuration)|$(Platform)'=='Release|x64'">0x0809</Culture>
+         <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\source;..\..\..\source;$(ID_SDK_DIR)\source\precomp\msvc;$(ID_SDK_DIR)\source\public\includes;$(ID_SDK_DIR)\source\sdksamples\common;%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+      </ResourceCompile>
+   </ItemGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+   <ImportGroup Label="ExtensionTargets"/>
+</Project>

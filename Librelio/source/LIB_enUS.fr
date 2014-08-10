@@ -44,6 +44,9 @@ resource StringTable (kSDKDefStringsResourceID + index_enUS)
                 // ----- Panel/dialog strings
                 kLIBPanelTitleKey,				kLIBPluginName,
                 kLIBStaticTextKey,				kLIBPluginName,
+                kLIBURLTextKey,                 "URL",
+                kLIBFullScreenTextKey,          "Show fullscreen",
+                kLIBAutoOpenTextKey,            "Launch automatically",
 
 
 		// ----- Misc strings

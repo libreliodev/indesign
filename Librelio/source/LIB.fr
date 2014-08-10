@@ -127,6 +127,7 @@ resource ClassDescriptionTable(kSDKDefClassDescriptionTableResourceID)
 			Implementation provided by the API.
 			*/
 			IID_IPANELMENUDATA, kCPanelMenuDataImpl,
+            IID_IOBSERVER, kLIBSelectionObserverImpl,
 		}
 	},
 
@@ -168,8 +169,6 @@ resource MenuDef (kSDKDefMenuResourceID)
 		kLIBTargetMenuPath
 		kLIBAboutThisMenuItemPosition,
 		kSDKDefIsNotDynamicMenuFlag,
-
-
 	}
 };
 
@@ -196,9 +195,6 @@ resource ActionDef (kSDKDefActionResourceID)
 		kDisableIfLowMem,
 		kInvalidInterfaceID,
 		kSDKDefInvisibleInKBSCEditorFlag,
-
-
-
 	}
 };
 
@@ -245,7 +241,6 @@ resource StringTable (kSDKDefStringsNoTransResourceID + index_enUS)
 		// No-Translate strings go here:
 
 		kLIBInternalPopupMenuNameKey,	kLIBInternalPopupMenuNameKey,		// No need to translate, internal menu name.
-
 	}
 };
 
@@ -306,16 +301,65 @@ resource LIBPanelWidget(kSDKDefPanelResourceID + index_enUS)
 	kFalse,								// Draw dropshadow
 	kLIBPanelTitleKey,			// Panel name
 	{
+        // Url label
 		StaticTextWidget
 		(
-			0,								// WidgetId (default=0)
-			 kSysStaticTextPMRsrcId,		// RsrcId
+			kLIBLabelURLWidgetID,								// WidgetId
+            kSysStaticTextPMRsrcId,		// RsrcId
 			kBindNone,						// Frame binding
-			5, 10, 202, 27,					// Frame: left, top, right, bottom.
+			5, 10, 25, 27,					// Frame: left, top, right, bottom.
 			kTrue, kTrue,					// Visible, Enabled
 			kAlignLeft, kEllipsizeEnd, kTrue		// Alignment, ellipsize style, convert ampersands
-			kLIBStaticTextKey,		// Initial text.
+			kLIBURLTextKey,		// Initial text.
 			0								// No associated widget
+		),
+        
+        // Url textbox
+        TextEditBoxWidget 
+		( 
+			kLIBTextBoxURLWidgetID, // WidgetId
+			kSysEditBoxPMRsrcId,                //RsrcId
+			kBindNone, 
+			25, 10, 200, 27,                // Frame
+			kTrue, 
+			kTrue, // Visible, Enabled
+			0, // widget id of nudge button
+			1, // small nudge amount
+			10, // large nudge amount
+			0, // max num chars( 0 = no limit)
+			kFalse, // is read only
+			kFalse, // should notify each key stroke (NEW)
+			kFalse, // range checking enabled
+			kFalse, // blank entry allowed
+			0, 
+			0, // upper/lower bounds
+			"http://",  // initial text
+		),
+
+        // Fullscreen checkbox
+        CheckBoxWidget
+	  	(
+			kLIBCheckBoxFullScreenWidgetID, // WidgetId
+			kSysCheckBoxPMRsrcId,               // RsrcId
+			kBindNone,
+			5, 30, 300, 47,                // Frame
+			kTrue,                              // Visible
+			kTrue,                              // Enabled
+			kAlignLeft,							// Alignment
+			kLIBFullScreenTextKey,// Initial text
+		),
+        
+        // Open automatically checkbox
+        CheckBoxWidget
+	  	(
+			kLIBCheckBoxAutoOpenWidgetID, // WidgetId
+			kSysCheckBoxPMRsrcId,               // RsrcId
+			kBindNone,
+			5, 50, 300, 67,                // Frame
+			kTrue,                              // Visible
+			kTrue,                              // Enabled
+			kAlignLeft,							// Alignment
+			kLIBAutoOpenTextKey,// Initial text
 		),
 	}
 

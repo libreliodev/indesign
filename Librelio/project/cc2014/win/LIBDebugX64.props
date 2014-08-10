@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+   <ImportGroup Label="PropertySheets">
+      <Import Project="..\..\..\..\id10sdk\build\win\prj\DebugX64.props"/>
+   </ImportGroup>
+   <PropertyGroup Label="UserMacros">
+      <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+      <ID_SDK_DIR>..\..\..\..\id10sdk</ID_SDK_DIR>
+   </PropertyGroup>
+</Project>
