@@ -47,6 +47,13 @@ resource StringTable (kSDKDefStringsResourceID + index_enUS)
                 kLIBURLTextKey,                 "URL",
                 kLIBFullScreenTextKey,          "Show fullscreen",
                 kLIBAutoOpenTextKey,            "Launch automatically",
+                kLIBTransitionTextKey,          "Transition",
+                kLIBTransitionNoneKey,          "None",
+                kLIBTransitionLeftToRightKey,   "Left to right",
+                kLIBDelayTextKey,               "Delay (ms)",
+                kLIBBackgroundTextKey,          "Background",
+                kLIBWhiteTextKey,               "White",
+                kLIBBlackTextKey,               "Black",
 
 
 		// ----- Misc strings

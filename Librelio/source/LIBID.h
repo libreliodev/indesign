@@ -12,7 +12,7 @@
 //  
 //  $Change: $
 //  
-//  Copyright 1997-2008 Adobe Systems Incorporated. All rights reserved.
+//  Copyright 1997-2012 Adobe Systems Incorporated. All rights reserved.
 //  
 //  NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance 
 //  with the terms of the Adobe license agreement accompanying it.  If you have received
@@ -33,7 +33,7 @@
 
 // Plug-in:
 #define kLIBPluginName	"Librelio"			// Name of this plug-in.
-#define kLIBPrefixNumber	0xe9400 		// Unique prefix number for this plug-in(*Must* be obtained from Adobe Developer Support).
+#define kLIBPrefixNumber	0x1a6f00 		// Unique prefix number for this plug-in(*Must* be obtained from Adobe Developer Support).
 #define kLIBVersion		kSDKDefPluginVersionString						// Version of this plug-in (for the About Box).
 #define kLIBAuthor		"Kinanu"					// Author of this plug-in (for the About Box).
 
@@ -77,7 +77,7 @@ DECLARE_PMID(kClassIDSpace, kLIBPanelWidgetBoss, kLIBPrefix + 1)
 
 
 // InterfaceIDs:
-//DECLARE_PMID(kInterfaceIDSpace, IID_ILIBINTERFACE, kLIBPrefix + 0)
+DECLARE_PMID(kInterfaceIDSpace, IID_ILIBSUITE, kLIBPrefix + 0)
 //DECLARE_PMID(kInterfaceIDSpace, IID_ILIBINTERFACE, kLIBPrefix + 1)
 //DECLARE_PMID(kInterfaceIDSpace, IID_ILIBINTERFACE, kLIBPrefix + 2)
 //DECLARE_PMID(kInterfaceIDSpace, IID_ILIBINTERFACE, kLIBPrefix + 3)
@@ -107,12 +107,11 @@ DECLARE_PMID(kClassIDSpace, kLIBPanelWidgetBoss, kLIBPrefix + 1)
 
 // ImplementationIDs:
 DECLARE_PMID(kImplementationIDSpace, kLIBActionComponentImpl, kLIBPrefix + 0 )
-DECLARE_PMID(kImplementationIDSpace, kLIBSelectionObserverImpl, kLIBPrefix + 1)
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 2)
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 3)
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 4)
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 5)
-//DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 6)
+DECLARE_PMID(kImplementationIDSpace, kLIBSuiteASBImpl, kLIBPrefix + 1 )
+DECLARE_PMID(kImplementationIDSpace, kLIBSuiteLayoutCSBImpl, kLIBPrefix + 2 )
+DECLARE_PMID(kImplementationIDSpace, kLIBSuiteTextCSBImpl, kLIBPrefix + 3 )
+DECLARE_PMID(kImplementationIDSpace, kLIBSuiteDefaultsCSBImpl, kLIBPrefix + 4 )
+DECLARE_PMID(kImplementationIDSpace, kLIBSelectionObserverImpl, kLIBPrefix + 5)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 7)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 8)
 //DECLARE_PMID(kImplementationIDSpace, kLIBImpl, kLIBPrefix + 9)
@@ -138,7 +137,8 @@ DECLARE_PMID(kImplementationIDSpace, kLIBSelectionObserverImpl, kLIBPrefix + 1)
 DECLARE_PMID(kActionIDSpace, kLIBAboutActionID, kLIBPrefix + 0)
 DECLARE_PMID(kActionIDSpace, kLIBPanelWidgetActionID, kLIBPrefix + 1)
 DECLARE_PMID(kActionIDSpace, kLIBSeparator1ActionID, kLIBPrefix + 2)
-DECLARE_PMID(kActionIDSpace, kLIBPopupAboutThisActionID, kLIBPrefix + 3)//DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 5)
+DECLARE_PMID(kActionIDSpace, kLIBPopupAboutThisActionID, kLIBPrefix + 3)
+//DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 5)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 6)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 7)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 8)
@@ -167,12 +167,12 @@ DECLARE_PMID(kWidgetIDSpace, kLIBLabelURLWidgetID, kLIBPrefix + 1)
 DECLARE_PMID(kWidgetIDSpace, kLIBTextBoxURLWidgetID, kLIBPrefix + 2)
 DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxFullScreenWidgetID, kLIBPrefix + 3)
 DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxAutoOpenWidgetID, kLIBPrefix + 4)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 5)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 6)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 7)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 8)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 9)
-//DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 10)
+DECLARE_PMID(kWidgetIDSpace, kLIBLabelTransitionWidgetID, kLIBPrefix + 5)
+DECLARE_PMID(kWidgetIDSpace, kLIBTransitionDropDownWidgetID, kLIBPrefix + 6)
+DECLARE_PMID(kWidgetIDSpace, kLIBLabelDelayWidgetID, kLIBPrefix + 7)
+DECLARE_PMID(kWidgetIDSpace, kLIBTextBoxDelayWidgetID, kLIBPrefix + 8)
+DECLARE_PMID(kWidgetIDSpace, kLIBLabelBackgroundWidgetID, kLIBPrefix + 9)
+DECLARE_PMID(kWidgetIDSpace, kLIBBackgroundDropDownWidgetID, kLIBPrefix + 10)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 11)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 12)
 //DECLARE_PMID(kWidgetIDSpace, kLIBWidgetID, kLIBPrefix + 13)
@@ -208,8 +208,15 @@ DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxAutoOpenWidgetID, kLIBPrefix + 4)
 #define kLIBTargetMenuPath kLIBInternalPopupMenuNameKey
 // Panel strings:
 #define kLIBURLTextKey					kLIBStringPrefix	"kLIBURLTextKey"
-#define kLIBFullScreenTextKey					kLIBStringPrefix	"kLIBFullScreenTextKey"
-#define kLIBAutoOpenTextKey					kLIBStringPrefix	"kLIBAutoOpenTextKey"
+#define kLIBFullScreenTextKey			kLIBStringPrefix	"kLIBFullScreenTextKey"
+#define kLIBAutoOpenTextKey				kLIBStringPrefix	"kLIBAutoOpenTextKey"
+#define kLIBTransitionTextKey           kLIBStringPrefix    "kLIBTransitionTextKey"
+#define kLIBTransitionNoneKey           kLIBStringPrefix    "kLIBTransitionNoneKey"
+#define kLIBTransitionLeftToRightKey    kLIBStringPrefix    "kLIBTransitionLeftToRightKey"
+#define kLIBDelayTextKey                kLIBStringPrefix    "kLIBDelayTextKey"
+#define kLIBBackgroundTextKey           kLIBStringPrefix    "kLIBBackgroundTextKey"
+#define kLIBWhiteTextKey                kLIBStringPrefix    "kLIBWhiteTextKey"
+#define kLIBBlackTextKey                kLIBStringPrefix    "kLIBBlackTextKey"
 
 // Menu item positions:
 
@@ -226,5 +233,3 @@ DECLARE_PMID(kWidgetIDSpace, kLIBCheckBoxAutoOpenWidgetID, kLIBPrefix + 4)
 #define kLIBCurrentMinorFormatNumber kLIBFirstMinorFormatNumber
 
 #endif // __LIBID_h__
-
-//  Code generated by DollyXs code generator

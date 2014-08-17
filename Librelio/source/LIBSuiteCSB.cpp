@@ -29,7 +29,9 @@
 #include "LIBSuiteCSB.h"
 
 // Project includes:
+#include "IHyperlinkSuite.h"
 #include "LIBID.h"
+#include "LIBHyperlinkUtils.h"
 
 /** Check if a hyperlink can be applied to this selection
  @return kSucces when a hyperlink can be applied, kFalse otherwise
@@ -49,8 +51,26 @@ bool16 LIBSuiteCSB::CanApplyLink(void)
 
 /** Performs apply link on the selection returning an ErrorCode.
  @return kSuccess on success, or an appropriate ErrorCode on failure. */
-ErrorCode LIBSuiteCSB::ApplyLink(void)
+ErrorCode LIBSuiteCSB::ApplyLink(const IDocument* document, const PMString& url, const UID sourceUID)
 {
-    return kFailure;
+    ErrorCode result = kFailure;
+    UIDList items = GetTarget();
+    
+    if(items != nil && items.Length() == 1)
+    {
+        LIBHyperlinkUtils hyperlinkUtils(document);
+        result = hyperlinkUtils.CreateHyperlink(items.GetRef(0), url, sourceUID);
+    }
+    
+    return result;
 }
 
+ErrorCode LIBSuiteCSB::GetLink(IDocument* document, UID sourceUID, PMString& url)
+{
+    ErrorCode result = kFailure;
+    LIBHyperlinkUtils hyperlinkUtils(document);
+    
+    result = hyperlinkUtils.GetHyperlink(sourceUID, url);
+    
+    return result;
+}

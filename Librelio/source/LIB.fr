@@ -12,7 +12,7 @@
 //  
 //  $Change: $
 //  
-//  Copyright 1997-2008 Adobe Systems Incorporated. All rights reserved.
+//  Copyright 1997-2012 Adobe Systems Incorporated. All rights reserved.
 //  
 //  NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance 
 //  with the terms of the Adobe license agreement accompanying it.  If you have received
@@ -40,12 +40,10 @@
 #include "BuildNumber.h"
 #include "PlugInModel_UIAttributes.h"
 #include "PanelList.fh"
-
 #include "InterfaceColorDefines.h"
 #include "IControlViewDefs.h"
 #include "SysControlIDs.h"
 #include "Widgets.fh"	// for PalettePanelWidget or DialogBoss
-
 
 // Project includes:
 #include "LIBID.h"
@@ -56,8 +54,9 @@
 
 #ifdef __ODFRC__
 
-/*  Plugin version definition.
-*/
+/*  
+ * Plugin version definition.
+ */
 resource PluginVersion (kSDKDefPluginVersionResourceID)
 {
 	kTargetVersion,
@@ -65,18 +64,19 @@ resource PluginVersion (kSDKDefPluginVersionResourceID)
 	kSDKDefPlugInMajorVersionNumber, kSDKDefPlugInMinorVersionNumber,
 	kSDKDefHostMajorVersionNumber, kSDKDefHostMinorVersionNumber,
 	kLIBCurrentMajorFormatNumber, kLIBCurrentMinorFormatNumber,
-	{ kInDesignProduct},
+	{ kInDesignProduct },
 	{ kWildFS },
 	kUIPlugIn,
 	kLIBVersion
 };
 
-/*  The ExtraPluginInfo resource adds extra information to the Missing Plug-in dialog
-	that is popped when a document containing this plug-in's data is opened when
-	this plug-in is not present. These strings are not translatable strings
-	since they must be available when the plug-in isn't around. They get stored
-	in any document that this plug-in contributes data to.
-*/
+/*  
+ * The ExtraPluginInfo resource adds extra information to the Missing Plug-in dialog
+ * that is popped when a document containing this plug-in's data is opened when
+ * this plug-in is not present. These strings are not translatable strings
+ * since they must be available when the plug-in isn't around. They get stored
+ * in any document that this plug-in contributes data to.
+ */
 resource ExtraPluginInfo(1)
 {
 	kLIBCompanyValue,			// Company name
@@ -84,59 +84,108 @@ resource ExtraPluginInfo(1)
 	kLIBMissingPluginAlertValue,	// Missing plug-in alert text
 };
 
-/* Boss class definition.
-*/
+/* 
+ * Boss class definitions.
+ */
 resource ClassDescriptionTable(kSDKDefClassDescriptionTableResourceID)
 {{{
-	
-	/**
-	 This boss class supports two interfaces:
-	 IActionComponent and IPMPersist.
 
-	 
-	 @ingroup librelio
-	*/
+	/*
+	 * This boss class supports two interfaces:
+	 * IActionComponent and IPMPersist.
+     *
+	 * 
+	 * @ingroup librelio
+	 */
 	Class
 	{
 		kLIBActionComponentBoss,
 		kInvalidClass,
 		{
-			/** Handle the actions from the menu. */
+			// Handle the actions from the menu.
 			IID_IACTIONCOMPONENT, kLIBActionComponentImpl,
-			/** Persist the state of the menu across application instantiation.
-			Implementation provided by the API.*/
+			// Persist the state of the menu across application instantiation. Implementation provided by the API.
 			IID_IPMPERSIST, kPMPersistImpl
 		}
 	},
 
-	/**
-		 This boss class inherits from an API panel boss class, and
-		 adds an interface to control a pop-up menu on the panel.
-		 The implementation for this interface is provided by the API.
-
-		 
-		 @ingroup librelio
-	*/
-
+    /*
+	 * This boss class inherits from an API panel boss class, and
+	 * adds an interface to control a pop-up menu on the panel.
+	 * The implementation for this interface is provided by the API.
+     *
+	 * 
+	 * @ingroup librelio
+	 */
 	Class
 	{
 		kLIBPanelWidgetBoss,
 		kPalettePanelWidgetBoss,
 		{
-			/** The plug-in's implementation of ITextControlData with an exotic IID of IID_IPANELMENUDATA.
-			Implementation provided by the API.
-			*/
+			/*
+			 * The plug-in's implementation of ITextControlData with an exotic IID of IID_IPANELMENUDATA.
+			 * Implementation provided by the API.
+			 */
 			IID_IPANELMENUDATA, kCPanelMenuDataImpl,
             IID_IOBSERVER, kLIBSelectionObserverImpl,
 		}
 	},
-
-
+		
+	AddIn
+	{
+		kIntegratorSuiteBoss,
+		kInvalidClass,
+		{
+			IID_ILIBSUITE,kLIBSuiteASBImpl,
+			
+		}
+	},
+		
+	AddIn
+	{
+		kTextSuiteBoss,
+		kInvalidClass,
+		{
+			IID_ILIBSUITE,kLIBSuiteTextCSBImpl,
+			
+		}
+	},
+		
+	AddIn
+	{
+		kLayoutSuiteBoss,
+		kInvalidClass,
+		{
+			IID_ILIBSUITE,kLIBSuiteLayoutCSBImpl,
+			
+		}
+	},
+		
+	AddIn
+	{
+		kApplicationDefaultSuiteBoss,
+		kInvalidClass,
+		{
+			IID_ILIBSUITE,kLIBSuiteDefaultsCSBImpl,
+			
+		}
+	},
+		
+	AddIn
+	{
+		kDocumentDefaultSuiteBoss,
+		kInvalidClass,
+		{
+			IID_ILIBSUITE,kLIBSuiteDefaultsCSBImpl,
+			
+		}
+	},
 
 }}};
 
-/*  Implementation definition.
-*/
+/*  
+ * Implementation definition.
+ */
 resource FactoryList (kSDKDefFactoryListResourceID)
 {
 	kImplementationIDSpace,
@@ -145,18 +194,17 @@ resource FactoryList (kSDKDefFactoryListResourceID)
 	}
 };
 
-
-/*  Menu definition.
-*/
+/*  
+ * Menu definition.
+ */
 resource MenuDef (kSDKDefMenuResourceID)
 {
 	{
-		// The About Plug-ins sub-menu item for this plug-in.
+		// The About sub-menu item for this plug-in.
 		kLIBAboutActionID,			// ActionID (kInvalidActionID for positional entries)
 		kLIBAboutMenuPath,			// Menu Path.
-		kSDKDefAlphabeticPosition,			// Menu Position.
-		kSDKDefIsNotDynamicMenuFlag,		// kSDKDefIsNotDynamicMenuFlag or kSDKDefIsDynamicMenuFlag
-
+		kSDKDefAlphabeticPosition,											// Menu Position.
+		kSDKDefIsNotDynamicMenuFlag,										// kSDKDefIsNotDynamicMenuFlag or kSDKDefIsDynamicMenuFlag
 
 		// Separator for the popup menu on the panel
 		kLIBSeparator1ActionID,
@@ -164,16 +212,18 @@ resource MenuDef (kSDKDefMenuResourceID)
 		kLIBSeparator1MenuItemPosition,
 		kSDKDefIsNotDynamicMenuFlag,
 
-		// About this plugin submenu for the popup menu on the panel
+		// About this plug-in sub-menu for the popup menu on the panel
 		kLIBPopupAboutThisActionID,
 		kLIBTargetMenuPath
 		kLIBAboutThisMenuItemPosition,
 		kSDKDefIsNotDynamicMenuFlag,
+
 	}
 };
 
-/* Action definition.
-*/
+/* 
+ * Action definition.
+ */
 resource ActionDef (kSDKDefActionResourceID)
 {
 	{
@@ -186,7 +236,6 @@ resource ActionDef (kSDKDefActionResourceID)
 		kInvalidInterfaceID,			// Selection InterfaceID this action cares about or kInvalidInterfaceID.
 		kSDKDefInvisibleInKBSCEditorFlag, // kSDKDefVisibleInKBSCEditorFlag or kSDKDefInvisibleInKBSCEditorFlag.
 
-
 		kLIBActionComponentBoss,
 		kLIBPopupAboutThisActionID,
 		kSDKDefAboutThisPlugInMenuKey,	// Key to the name of this action
@@ -195,16 +244,20 @@ resource ActionDef (kSDKDefActionResourceID)
 		kDisableIfLowMem,
 		kInvalidInterfaceID,
 		kSDKDefInvisibleInKBSCEditorFlag,
+
 	}
 };
 
 
-/*  LocaleIndex
-	The LocaleIndex should have indicies that point at your
-	localizations for each language system that you are localized for.
-*/
-/*  String LocaleIndex.
-*/
+/*  
+ * Locale Indicies.
+ * The LocaleIndex should have indicies that point at your
+ * localizations for each language system that you are localized for.
+ */
+
+/*  
+ * String LocaleIndex.
+ */
 resource LocaleIndex ( kSDKDefStringsResourceID)
 {
 	kStringTableRsrcType,
@@ -233,22 +286,20 @@ resource LocaleIndex (kSDKDefStringsNoTransResourceID)
 	}
 };
 
+// Strings not being localized
 resource StringTable (kSDKDefStringsNoTransResourceID + index_enUS)
 {
 	k_enUS,									// Locale Id
 	kEuropeanMacToWinEncodingConverter,		// Character encoding converter
 	{
-		// No-Translate strings go here:
-
 		kLIBInternalPopupMenuNameKey,	kLIBInternalPopupMenuNameKey,		// No need to translate, internal menu name.
+	
 	}
 };
 
-
-
-
-/*  Panel LocaleIndex.
-*/
+/*  
+ * Panel LocaleIndex.
+ */
 resource LocaleIndex (kSDKDefPanelResourceID)
 {
 	kViewRsrcType,
@@ -257,23 +308,24 @@ resource LocaleIndex (kSDKDefPanelResourceID)
 	}
 };
 
-
-/*  Type definition.
-*/
+/*  
+ * Type definition.
+ */
 type LIBPanelWidget(kViewRsrcType) : PalettePanelWidget(ClassID = kLIBPanelWidgetBoss)
 {
 	CPanelMenuData;
 };
 
-/*  PanelList definition.
-*/
+/*  
+ * PanelList definition.
+ */
 resource PanelList (kSDKDefPanelResourceID)
 {
 	{
 		// 1st panel in the list
 		kSDKDefPanelResourceID,		// Resource ID for this panel (use SDK default rsrc ID)
 		kLIBPluginID,			// ID of plug-in that owns this panel
-		kIsResizable,
+		kNotResizable,
 		kLIBPanelWidgetActionID,	// Action ID to show/hide the panel
 		kLIBPanelTitleKey,	// Shows up in the Window list.
 		"",							// Alternate menu path of the form "Main:Foo" if you want your palette menu item in a second place
@@ -283,25 +335,27 @@ resource PanelList (kSDKDefPanelResourceID)
 	}
 };
 
-/*  PanelView definition.
-	The view is not currently localised: therefore, it can reside here.
-	However, if you wish to localise it, it is recommended to locate it in one of
-	the localised framework resource files (i.e. LIB_enUS.fr etc.).
-*/
+/* 
+ * PanelView definition.
+ * Note: it is not necessary to use EVE for panels.
+ * The view is not currently localised: therefore, it can reside here.
+ * However, if you wish to localise it, it is recommended to locate it in one of
+ * the localised framework resource files (i.e. LIB_enUS.fr etc.).
+ */
 resource LIBPanelWidget(kSDKDefPanelResourceID + index_enUS)
 {
 	__FILE__, __LINE__,					// Localization macro
-	kLIBPanelWidgetID,			// WidgetID
+	kLIBPanelWidgetID,					// WidgetID
 	kPMRsrcID_None,						// RsrcID
 	kBindNone,							// Binding (0=none)
-	0, 0, 207, 32,						// Frame: left, top, right, bottom.
+	Frame(0, 0, 207, 140),				// Frame: left, top, right, bottom.
 	kTrue, kTrue,						// Visible, Enabled
 	kFalse,								// Erase background
 	kInterfacePaletteFill,				// Erase to color
 	kFalse,								// Draw dropshadow
-	kLIBPanelTitleKey,			// Panel name
+	kLIBPanelTitleKey,					// Panel name
 	{
-        // Url label
+		// Url label
 		StaticTextWidget
 		(
 			kLIBLabelURLWidgetID,								// WidgetId
@@ -361,16 +415,101 @@ resource LIBPanelWidget(kSDKDefPanelResourceID + index_enUS)
 			kAlignLeft,							// Alignment
 			kLIBAutoOpenTextKey,// Initial text
 		),
-	}
+        
+        // Transition label
+		StaticTextWidget
+		(
+			kLIBLabelTransitionWidgetID,								// WidgetId
+            kSysStaticTextPMRsrcId,		// RsrcId
+			kBindNone,						// Frame binding
+			5, 70, 55, 87,					// Frame: left, top, right, bottom.
+			kTrue, kTrue,					// Visible, Enabled
+			kAlignLeft, kEllipsizeEnd, kTrue		// Alignment, ellipsize style, convert ampersands
+			kLIBTransitionTextKey,		// Initial text.
+			0								// No associated widget
+		),
+
+        // Transition dropdown
+        DropDownListWidget
+        (
+            kLIBTransitionDropDownWidgetID,
+            kSysDropDownPMRsrcId,
+            kBindNone,
+            60, 70, 200, 87,
+            kTrue,
+            kTrue,
+            {{
+                kLIBTransitionNoneKey,
+                kLIBTransitionLeftToRightKey,
+            }}
+        ),
+        
+        // Background label
+		StaticTextWidget
+		(
+			kLIBLabelBackgroundWidgetID,								// WidgetId
+            kSysStaticTextPMRsrcId,		// RsrcId
+			kBindNone,						// Frame binding
+			5, 90, 60, 107,					// Frame: left, top, right, bottom.
+			kTrue, kTrue,					// Visible, Enabled
+			kAlignLeft, kEllipsizeEnd, kTrue		// Alignment, ellipsize style, convert ampersands
+			kLIBBackgroundTextKey,		// Initial text.
+			0								// No associated widget
+		),
+
+        // Background dropdown
+        DropDownListWidget
+        (
+            kLIBBackgroundDropDownWidgetID,
+            kSysDropDownPMRsrcId,
+            kBindNone,
+            60, 90, 200, 107,
+            kTrue,
+            kTrue,
+            {{
+                kLIBWhiteTextKey,
+                kLIBBlackTextKey,
+            }}
+        ),
+
+
+        // Delay label
+		StaticTextWidget
+		(
+			kLIBLabelDelayWidgetID,								// WidgetId
+            kSysStaticTextPMRsrcId,		// RsrcId
+			kBindNone,						// Frame binding
+			5, 110, 55, 127,					// Frame: left, top, right, bottom.
+			kTrue, kTrue,					// Visible, Enabled
+			kAlignLeft, kEllipsizeEnd, kTrue		// Alignment, ellipsize style, convert ampersands
+			kLIBDelayTextKey,		// Initial text.
+			0								// No associated widget
+		),
+        
+        // Delay textbox
+        IntEditBoxWidget
+		(
+			kLIBTextBoxDelayWidgetID,	// WidgetId
+			kSysEditBoxPMRsrcId,			// RsrcId
+			kBindNone,						// Frame binding
+			60, 110, 100, 127,		// Frame (l,t,r,b)
+			kTrue, kTrue,					// Visible, Enabled
+			kInvalidWidgetID,								// widget id of nudge button			
+			1,1,							// small/large nudge amount
+			0,								// max num chars( 0 = no limit)
+			kFalse,							// is read only
+			kFalse,							// should notify each key stroke
+			kFalse,							// range checking enabled
+			kFalse,							// blank entry allowed
+			0, 0,							// upper/lower bounds
+			"0"								// initial text
+		),
+    }
 
 	kLIBInternalPopupMenuNameKey		// Popup menu name (internal)
 };
-
-
 
 #endif // __ODFRC__
 
 #include "LIB_enUS.fr"
 #include "LIB_jaJP.fr"
-
-//  Code generated by DollyXs code generator

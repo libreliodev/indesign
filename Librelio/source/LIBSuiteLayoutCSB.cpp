@@ -72,6 +72,7 @@ CREATE_PMINTERFACE(LIBSuiteLayoutCSB, kLIBSuiteLayoutCSBImpl)
 UIDList LIBSuiteLayoutCSB::GetTarget(void)
 {
 	UIDList result;
+    
 	do {
 		InterfacePtr<ILayoutTarget> layoutTarget(this, UseDefaultIID());
 		ASSERT(layoutTarget);
@@ -80,5 +81,6 @@ UIDList LIBSuiteLayoutCSB::GetTarget(void)
 		}
 		result = layoutTarget->GetUIDList(kStripStandoffs);
 	} while(false);
+    
 	return result;
 }

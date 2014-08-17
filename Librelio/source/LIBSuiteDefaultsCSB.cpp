@@ -70,7 +70,4 @@ CREATE_PMINTERFACE(LIBSuiteDefaultsCSB, kLIBSuiteDefaultsCSBImpl)
 UIDList LIBSuiteDefaultsCSB::GetTarget(void)
 {
     return nil;
-//	UIDRef defaultsRef = ::GetUIDRef(this);
-//	ASSERT(defaultsRef != UIDRef::gNull);
-//	return UIDList(defaultsRef);
 }

@@ -59,7 +59,9 @@ public:
     
 	/** Performs apply link on the selection returning an ErrorCode.
      @return kSuccess on success, or an appropriate ErrorCode on failure. */
-	virtual ErrorCode ApplyLink(void);
+	virtual ErrorCode ApplyLink(const IDocument* document, const PMString& url, const UID sourceUID);
+    
+    virtual ErrorCode GetLink(IDocument* document, UID sourceUID, PMString& url);
     
 };
 
@@ -75,7 +77,12 @@ bool16 LIBSuiteASB::CanApplyLink(void)
 	return( AnyCSBSupports(make_functor(&ILIBSuite::CanApplyLink), this, IID_ILIBSUITE));
 }
 
-ErrorCode LIBSuiteASB::ApplyLink(void)
+ErrorCode LIBSuiteASB::ApplyLink(const IDocument* document, const PMString& url, const UID sourceUID)
 {
-	return( Process(make_functor(&ILIBSuite::ApplyLink), this, IID_ILIBSUITE));
+	return( Process(make_functor(&ILIBSuite::ApplyLink, document, url, sourceUID), this, IID_ILIBSUITE));
+}
+
+ErrorCode LIBSuiteASB::GetLink(IDocument* document, UID sourceUID, PMString& url)
+{
+    return( Process(make_functor(&ILIBSuite::GetLink, document, sourceUID, url), this, IID_ILIBSUITE));
 }
