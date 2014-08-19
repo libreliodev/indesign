@@ -43,6 +43,8 @@ bool16 LIBSuiteCSB::CanApplyLink(void)
     
     if(items != nil && items.Length() == 1)
     {
+//        UIDRef itemUIDRef = items.GetRef(0);
+        
         result = kTrue;
     }
     

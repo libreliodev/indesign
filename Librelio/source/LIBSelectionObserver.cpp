@@ -11,6 +11,7 @@
 #include "ILIBSuite.h"
 #include "SelectionObserver.h"
 #include "CAlert.h"
+#include "IDropDownListController.h"
 #include "IDocument.h"
 #include "IHyperlink.h"
 #include "IHyperlinkDestination.h"
@@ -24,9 +25,10 @@
 #include "ISubject.h"
 #include "ITextValue.h"
 #include "ITriStateControlData.h"
-#include "LIBStringUtils.h"
-
 #include "LIBHyperlinkUtils.h"
+#include "URLParser.h"
+
+#include <sstream>
 
 class LIBSelectionObserver : public ActiveSelectionObserver
 {
@@ -44,24 +46,30 @@ public:
 protected:
     virtual void HandleSelectionChanged(const ISelectionMessage *message);
     virtual void HandleSelectionUpdate(const ClassID& theChange, ISubject* theSubject, const PMIID& protocol, void* changedBy);
+    virtual void Update(const ClassID& theChange, ISubject* theSubject, const PMIID& protocol, void* changedBy);
     
 private:
-    void AppendCheckboxValue(const IControlView* checkbox, const PMString& value);
+    std::map<WidgetID, std::map<std::string, int32> > m_dropDownIndices;
+    
+    void AppendCheckboxValue(const IControlView* checkbox, const PMString& key, const PMString& value);
     void AppendDropDownValue(const IControlView* checkbox, const PMString& value);
-    void AppendUrl(const PMString& value, const bool16 append, const PMString& key = "");
+    void AppendTextBoxValue(const IControlView* textBox, const PMString& key);
+    void AppendUrl(const PMString& key, const PMString& value, const bool16 append);
     void AttachWidget(IPanelControlData* panelControlData, const WidgetID& widgetID, const PMIID& interfaceID);
     void DetachWidget(IPanelControlData* panelControlData, const WidgetID& widgetID, const PMIID& interfaceID);
     void EnableWidget(const WidgetID& widgetID, bool16 enable);
     void EnableWidgets(bool16 enable);
     IControlView* GetControl(const WidgetID& widgetID);
     bool16 GetCheckboxValue(const IControlView* checkbox);
+    int32 GetDropDownIndex(const WidgetID& widgetID, const std::string& value);
     UID GetHyperlinkSource();
-    void GetURLFromTextBox(PMString& url);
+    void GetValueFromTextBox(const WidgetID& widgetID, PMString& url);
     void ParseUrl(const PMString& url);
     void ResetWidgets();
     void ResetCheckBoxes();
-    void SetCheckBox(const WidgetID& widgetID, const bool16 check);
-    void SetURLTextBoxValue(PMString url, bool16 notify);
+    void SetCheckBox(const WidgetID& widgetID, const bool16 checked);
+    void SetDropDown(const WidgetID& widgetID, const int32 index);
+    void SetTextBoxValue(const WidgetID& widgetID, const PMString value, const bool16 notify);
     void URLWidgetValueChanged(IControlView* widgetControlView);
 };
 
@@ -69,6 +77,10 @@ CREATE_PMINTERFACE(LIBSelectionObserver, kLIBSelectionObserverImpl)
 
 LIBSelectionObserver::LIBSelectionObserver(IPMUnknown *boss) : ActiveSelectionObserver(boss)
 {
+    m_dropDownIndices[kLIBBackgroundDropDownWidgetID]["black"] = 0;
+    m_dropDownIndices[kLIBBackgroundDropDownWidgetID]["white"] = 1;
+    m_dropDownIndices[kLIBTransitionDropDownWidgetID]["none"] = 0;
+    m_dropDownIndices[kLIBTransitionDropDownWidgetID]["movein"] = 1;
 }
 
 LIBSelectionObserver::~LIBSelectionObserver()
@@ -180,7 +192,6 @@ void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selec
     if(libSuite != nil && libSuite->CanApplyLink())
     {
         enable = kTrue;
-        
         do
         {
             ErrorCode result = kFailure;
@@ -232,172 +243,147 @@ void LIBSelectionObserver::HandleSelectionUpdate(const ClassID& theChange, ISubj
 	// Call the parent class to handle updates from the active selection.
 	ActiveSelectionObserver::HandleSelectionUpdate(theChange, theSubject, protocol, changedBy);
     
-	// Handle updates from the url widget on the panel.
-	if (theChange == kTextChangeStateMessage ||
-        theChange == kPopupChangeStateMessage ||
-        theChange == kFalseStateMessage ||
-        theChange == kTrueStateMessage)
-	{
-        
-		InterfacePtr<IControlView> controlView(theSubject, UseDefaultIID());
-        
-		if (controlView)
-		{
-			WidgetID widgetID = controlView->GetWidgetID();
+    InterfacePtr<ILIBSuite> libSuite(fCurrentSelection, UseDefaultIID());
+    
+    if(libSuite != nil && libSuite->CanApplyLink())
+    {
+        // Handle updates from the url widget on the panel.
+        if (theChange == kTextChangeStateMessage ||
+            theChange == kPopupChangeStateMessage ||
+            theChange == kFalseStateMessage ||
+            theChange == kTrueStateMessage)
+        {
             
-			switch (widgetID.Get())
-			{
-				case kLIBTextBoxURLWidgetID:
-                    
-					this->URLWidgetValueChanged(controlView);
-					break;
-                    
-                case kLIBCheckBoxAutoOpenWidgetID:
-                    
-                    this->AppendCheckboxValue(controlView, "waplay=auto");
-                    break;
-                    
-                case kLIBCheckBoxFullScreenWidgetID:
-                    
-                    this->AppendCheckboxValue(controlView, "warect=full");
-                    break;
+            InterfacePtr<IControlView> controlView(theSubject, UseDefaultIID());
+            
+            if (controlView != nil)
+            {
+                WidgetID widgetID = controlView->GetWidgetID();
                 
-                case kLIBTransitionDropDownWidgetID:
-                    
-//                    this->AppendDropDownValue(controlView, "watransition=");
-                    break;
-                    
-                case kLIBBackgroundDropDownWidgetID:
-                    
-//                    this->AppendDropDownValue(controlView, "wabgcolor=");
-                    break;
-                    
-                case kLIBTextBoxDelayWidgetID:
-                    
-//                    this->AppendTextBoxValue(controlView, "wadelay=");
-                    break;
-                    
-				default:
+                switch (widgetID.Get())
+                {
+                    case kLIBTextBoxURLWidgetID:
+                        
+                        this->URLWidgetValueChanged(controlView);
+                        break;
+                        
+                    case kLIBCheckBoxAutoOpenWidgetID:
+                        
 
-					break;
-			}
-		}
-	}
+                        this->AppendCheckboxValue(controlView, "waplay", "auto");
+                        break;
+                        
+                    case kLIBCheckBoxFullScreenWidgetID:
+                        
+
+                        this->AppendCheckboxValue(controlView, "warect", "full");
+                        break;
+                    
+                    case kLIBTransitionDropDownWidgetID:
+
+
+                      this->AppendDropDownValue(controlView, "watransition");
+                        break;
+                        
+                    case kLIBBackgroundDropDownWidgetID:
+                        
+
+                        this->AppendDropDownValue(controlView, "wabgcolor");
+                        break;
+                        
+                    case kLIBTextBoxDelayWidgetID:
+                        
+
+                        this->AppendTextBoxValue(controlView, "wadelay");
+                        break;
+                        
+                    default:
+
+                        break;
+                }
+            }
+        }
+    }
 }
 
-void LIBSelectionObserver::AppendCheckboxValue(const IControlView* checkbox, const PMString& value)
+void LIBSelectionObserver::Update(const ClassID& theChange, ISubject* theSubject, const PMIID& protocol, void* changedBy)
+{
+    ActiveSelectionObserver::Update(theChange, theSubject, protocol, changedBy);
+}
+
+void LIBSelectionObserver::AppendCheckboxValue(const IControlView* checkbox, const PMString& key, const PMString& value)
 {
     bool16 append = this->GetCheckboxValue(checkbox);
-    this->AppendUrl(value, append);
+    this->AppendUrl(key, value, append);
 }
 
-void LIBSelectionObserver::AppendDropDownValue(const IControlView* dropDown, const PMString& value)
+void LIBSelectionObserver::AppendDropDownValue(const IControlView* dropDown, const PMString& key)
 {
-    PMString finalValue = value;
+    bool16 append = kTrue;
     InterfacePtr<ITextControlData> dropDownValue(dropDown, UseDefaultIID());
-    PMString result = PMString(dropDownValue->GetString());
+    PMString value = PMString(dropDownValue->GetString());
     
-    if(result == kLIBTransitionNoneKey)
+    if(value == kLIBTransitionNoneKey)
     {
-        result = "none";
+        value = "none";
+        append = kFalse;
     }
-    else if(result == kLIBTransitionLeftToRightKey)
+    else if(value == kLIBTransitionLeftToRightKey)
     {
-        result = "movein";
+        value = "movein";
     }
     else
     {
-        result.Translate();
-        result.ToLower();
+        value.Translate();
+        value.ToLower();
+        
+        if(value == "black")
+        {
+            append = kFalse;
+        }
     }
     
-    finalValue.Append(result);
-    this->AppendUrl(finalValue, kTrue, value);
+    this->AppendUrl(key, value, append);
 }
 
-void LIBSelectionObserver::AppendUrl(const PMString& value, const bool16 append, const PMString& key)
+void LIBSelectionObserver::AppendTextBoxValue(const IControlView* textBox, const PMString& key)
 {
-    bool16 dirty = kFalse;
-    PMString url;
-    this->GetURLFromTextBox(url);
+    bool16 append = kTrue;
+    PMString value;
+    this->GetValueFromTextBox(textBox->GetWidgetID(), value);
     
-    std::string str_url = url.GetPlatformString();
-    std::string str_value = value.GetPlatformString();
-    
-    LIBStringUtils stringUtils;
-    std::vector<std::string> parts = stringUtils.split(str_url, '?');
-    std::string str_without = parts[0];
-    
-    if(parts.size() > 1)
+    if(value == "0")
     {
-        bool16 notFound = kTrue;
-        std::vector<std::string> args = stringUtils.split(parts[1], '&');
-        
-        if(args.size() > 0)
-        {
-            for(std::vector<std::string>::iterator it = args.begin(); it != args.end(); ++it)
-            {
-                if(!key.IsEmpty())
-                {
-                    if(it->find(key.GetPlatformString()) != std::string::npos)
-                    {
-                        args.erase(it);
-                        dirty = kTrue;
-                        break;
-                    }
-                }
-                else if(it->compare(str_value)==0)
-                {
-                    if(!append)
-                    {
-                        args.erase(it);
-                        dirty = kTrue;
-                    }
-                    
-                    notFound = kFalse;
-                    break;
-                }
-            }
-        }
-        
-        if(dirty)
-        {
-            if(args.size() > 0)
-            {
-                str_without.append("?");
-                
-                for(int index = 0; index < args.size(); index++)
-                {
-                    str_without.append(args[index]);
-                    
-                    if(index < args.size() - 1)
-                    {
-                        str_without.append("&");
-                    }
-                }
-            }
-            
-            str_url = str_without;
-        }
-        
-        if(notFound && append)
-        {
-            str_url.append("&");
-            str_url.append(str_value);
-        }
+        append = kFalse;
+    }
+    
+    this->AppendUrl(key, value, append);
+}
+
+void LIBSelectionObserver::AppendUrl(const PMString& key, const PMString& value, const bool16 append)
+{
+    PMString url;
+    this->GetValueFromTextBox(kLIBTextBoxURLWidgetID, url);
+    
+    std::string str_url = url.GetUTF8String();
+    std::string str_key = key.GetUTF8String();
+    std::string str_value = value.GetUTF8String();
+    
+    URLParser urlParser;
+    urlParser.parse(str_url);
+    
+    if(append)
+    {
+        urlParser.add(str_key, str_value);
     }
     else
     {
-        if(append)
-        {
-            str_url.append("?");
-            str_url.append(str_value);
-        }
+        urlParser.remove(str_key);
     }
     
+    str_url = urlParser.getURL();
     PMString newUrl = PMString(str_url.c_str());
-    this->SetURLTextBoxValue(newUrl, kTrue);
-    
+    this->SetTextBoxValue(kLIBTextBoxURLWidgetID, newUrl, kTrue);
 }
 
 void LIBSelectionObserver::EnableWidget(const WidgetID& widgetID, bool16 enable)
@@ -418,7 +404,6 @@ void LIBSelectionObserver::EnableWidgets(bool16 enable)
     this->EnableWidget(kLIBBackgroundDropDownWidgetID, enable);
     this->EnableWidget(kLIBTransitionDropDownWidgetID, enable);
     this->EnableWidget(kLIBTextBoxDelayWidgetID, enable);
-    
 }
 
 IControlView* LIBSelectionObserver::GetControl(const WidgetID& widgetID)
@@ -451,52 +436,48 @@ bool16 LIBSelectionObserver::GetCheckboxValue(const IControlView* checkbox)
     return selected;
 }
 
-void LIBSelectionObserver::GetURLFromTextBox(PMString& url)
+int32 LIBSelectionObserver::GetDropDownIndex(const WidgetID& widgetID, const std::string& value)
 {
-    IControlView* urlControl = this->GetControl(kLIBTextBoxURLWidgetID);
+    return m_dropDownIndices[widgetID][value];
+}
+
+void LIBSelectionObserver::GetValueFromTextBox(const WidgetID& widgetID, PMString& value)
+{
+    IControlView* urlControl = this->GetControl(widgetID);
     InterfacePtr<ITextControlData> textValue(urlControl, UseDefaultIID());
     
     if (textValue != nil)
     {
-        url = textValue->GetString();
+        value = textValue->GetString();
     }
 }
 
 void LIBSelectionObserver::ParseUrl(const PMString &url)
 {
-    std::string str_url = url.GetPlatformString();
-
-    LIBStringUtils stringUtils;
-    std::vector<std::string> parts = stringUtils.split(str_url, '?');
+    std::string str_url = url.GetUTF8String();
+    URLParser urlParser;
     
-    this->ResetCheckBoxes();
+    urlParser.parse(str_url);
+    std::string fullscreen = urlParser.getArgValue("warect");
+    std::string autoPlay = urlParser.getArgValue("waplay");
+    std::string transition = urlParser.getArgValue("watransition", "None");
+    std::string background = urlParser.getArgValue("wabgcolor", "Black");
+    PMString delay = PMString(urlParser.getArgValue("wadelay", "0").c_str());
     
-    if(parts.size() > 1)
-    {
-        std::vector<std::string> args = stringUtils.split(parts[1], '&');
-        
-        if(args.size() > 0)
-        {
-            // warect = full, waplay = auto
-            for(std::vector<std::string>::iterator it = args.begin(); it != args.end(); ++it)
-            {
-                if(it->compare("warect=full")==0)
-                {
-                    this->SetCheckBox(kLIBCheckBoxFullScreenWidgetID, kTrue);
-                }
-                else if(it->compare("waplay=auto")==0)
-                {
-                    this->SetCheckBox(kLIBCheckBoxAutoOpenWidgetID, kTrue);
-                }
-            }
-        }
-    }
+    this->SetCheckBox(kLIBCheckBoxFullScreenWidgetID, !fullscreen.empty());
+    this->SetCheckBox(kLIBCheckBoxAutoOpenWidgetID, !autoPlay.empty());
+    this->SetDropDown(kLIBTransitionDropDownWidgetID, this->GetDropDownIndex(kLIBTransitionDropDownWidgetID, transition));
+    this->SetDropDown(kLIBBackgroundDropDownWidgetID, this->GetDropDownIndex(kLIBBackgroundDropDownWidgetID, background));
+    this->SetTextBoxValue(kLIBTextBoxDelayWidgetID, delay, kFalse);
 }
 
 void LIBSelectionObserver::ResetCheckBoxes()
 {
     this->SetCheckBox(kLIBCheckBoxAutoOpenWidgetID, kFalse);
     this->SetCheckBox(kLIBCheckBoxFullScreenWidgetID, kFalse);
+    this->SetDropDown(kLIBTransitionDropDownWidgetID, 0);
+    this->SetDropDown(kLIBBackgroundDropDownWidgetID, 0);
+    this->SetTextBoxValue(kLIBTextBoxDelayWidgetID, "0", kFalse);
 }
 
 void LIBSelectionObserver::ResetWidgets()
@@ -522,7 +503,7 @@ void LIBSelectionObserver::ResetWidgets()
     } while(kFalse);
 }
 
-void LIBSelectionObserver::SetCheckBox(const WidgetID& widgetID, const bool16 check)
+void LIBSelectionObserver::SetCheckBox(const WidgetID& widgetID, const bool16 checked)
 {
     IControlView* checkBox = this->GetControl(widgetID);
     
@@ -540,7 +521,7 @@ void LIBSelectionObserver::SetCheckBox(const WidgetID& widgetID, const bool16 ch
             break;
         }
         
-        if(check)
+        if(checked)
         {
             checkValue->Select(kTrue, kFalse);
         }
@@ -552,14 +533,25 @@ void LIBSelectionObserver::SetCheckBox(const WidgetID& widgetID, const bool16 ch
     } while(kFalse);
 }
 
-void LIBSelectionObserver::SetURLTextBoxValue(PMString url, bool16 notify)
+void LIBSelectionObserver::SetDropDown(const WidgetID& widgetID, const int32 index)
 {
-    IControlView* urlControl = this->GetControl(kLIBTextBoxURLWidgetID);
-    InterfacePtr<ITextControlData> textValue(urlControl, UseDefaultIID());
+    IControlView* dropDown = this->GetControl(widgetID);
+    InterfacePtr<IDropDownListController> dropDownController(dropDown, UseDefaultIID());
+    
+    if(dropDownController != nil)
+    {
+        dropDownController->Select(index, kTrue, kFalse);
+    }
+}
+
+void LIBSelectionObserver::SetTextBoxValue(const WidgetID& widgetID, const PMString value, const bool16 notify)
+{
+    IControlView* textBox = this->GetControl(widgetID);
+    InterfacePtr<ITextControlData> textValue(textBox, UseDefaultIID());
     
     if (textValue != nil)
     {
-        textValue->SetString(url, kTrue, notify);
+        textValue->SetString(value, kTrue, notify);
     }
 }
 

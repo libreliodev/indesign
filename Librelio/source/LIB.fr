@@ -467,8 +467,8 @@ resource LIBPanelWidget(kSDKDefPanelResourceID + index_enUS)
             kTrue,
             kTrue,
             {{
-                kLIBWhiteTextKey,
                 kLIBBlackTextKey,
+                kLIBWhiteTextKey,
             }}
         ),
 
