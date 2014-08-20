@@ -23,8 +23,8 @@
 		C764971E199E1F62000A4D51 /* LIBSuiteTextCSB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7649712199E1F62000A4D51 /* LIBSuiteTextCSB.cpp */; };
 		C77810BD199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C77810BB199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp */; };
 		C77810BE199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C77810BB199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp */; };
-		C78FB60219A0BA5000ABC576 /* LIBStringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C78FB60019A0BA5000ABC576 /* LIBStringUtils.cpp */; };
-		C78FB60319A0BA5000ABC576 /* LIBStringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C78FB60019A0BA5000ABC576 /* LIBStringUtils.cpp */; };
+		C77E147719A25701007CF20F /* URLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C77E147519A25701007CF20F /* URLParser.cpp */; };
+		C77E147819A25701007CF20F /* URLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C77E147519A25701007CF20F /* URLParser.cpp */; };
 		F957085215C90B3B00C95573 /* LIB.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* LIB.fr */; };
 		F957085415C90B3B00C95573 /* LIBNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* LIBNoStrip.cpp */; };
 		F957085515C90B3B00C95573 /* LIBID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* LIBID.cpp */; };
@@ -90,8 +90,8 @@
 		C7649712199E1F62000A4D51 /* LIBSuiteTextCSB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LIBSuiteTextCSB.cpp; path = ../../../source/LIBSuiteTextCSB.cpp; sourceTree = "<group>"; };
 		C77810BB199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LIBHyperlinkUtils.cpp; path = ../../../source/LIBHyperlinkUtils.cpp; sourceTree = "<group>"; };
 		C77810BC199F5DF800AE3C42 /* LIBHyperlinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LIBHyperlinkUtils.h; path = ../../../source/LIBHyperlinkUtils.h; sourceTree = "<group>"; };
-		C78FB60019A0BA5000ABC576 /* LIBStringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LIBStringUtils.cpp; path = ../../../source/LIBStringUtils.cpp; sourceTree = "<group>"; };
-		C78FB60119A0BA5000ABC576 /* LIBStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LIBStringUtils.h; path = ../../../source/LIBStringUtils.h; sourceTree = "<group>"; };
+		C77E147519A25701007CF20F /* URLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = URLParser.cpp; path = ../../../source/URLParser.cpp; sourceTree = "<group>"; };
+		C77E147619A25701007CF20F /* URLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = URLParser.h; path = ../../../source/URLParser.h; sourceTree = "<group>"; };
 		F957084B15C90B2D00C95573 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../../id10sdk/build/mac/debug_cocoa64/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
 		F957084C15C90B2D00C95573 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../../id10sdk/build/mac/debug_cocoa64/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
 		F957084D15C90B2D00C95573 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../../id10sdk/build/mac/release_cocoa64/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
@@ -146,8 +146,8 @@
 		4B05EEC708840E8D00D809E1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C78FB60019A0BA5000ABC576 /* LIBStringUtils.cpp */,
-				C78FB60119A0BA5000ABC576 /* LIBStringUtils.h */,
+				C77E147519A25701007CF20F /* URLParser.cpp */,
+				C77E147619A25701007CF20F /* URLParser.h */,
 				C77810BB199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp */,
 				C77810BC199F5DF800AE3C42 /* LIBHyperlinkUtils.h */,
 				C764970B199E1F62000A4D51 /* ILIBSuite.h */,
@@ -368,13 +368,13 @@
 			files = (
 				C7649719199E1F62000A4D51 /* LIBSuiteDefaultsCSB.cpp in Sources */,
 				000000000000000000000002 /* LIBActionComponent.cpp in Sources */,
+				C77E147719A25701007CF20F /* URLParser.cpp in Sources */,
 				C7649717199E1F62000A4D51 /* LIBSuiteCSB.cpp in Sources */,
 				C764971B199E1F62000A4D51 /* LIBSuiteLayoutCSB.cpp in Sources */,
 				F957085215C90B3B00C95573 /* LIB.fr in Sources */,
 				F957085415C90B3B00C95573 /* LIBNoStrip.cpp in Sources */,
 				C77810BD199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp in Sources */,
 				C764971D199E1F62000A4D51 /* LIBSuiteTextCSB.cpp in Sources */,
-				C78FB60219A0BA5000ABC576 /* LIBStringUtils.cpp in Sources */,
 				F957085515C90B3B00C95573 /* LIBID.cpp in Sources */,
 				C710C9801997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */,
 				C7649715199E1F62000A4D51 /* LIBSuiteASB.cpp in Sources */,
@@ -388,13 +388,13 @@
 			files = (
 				C764971A199E1F62000A4D51 /* LIBSuiteDefaultsCSB.cpp in Sources */,
 				000000000000000000000001 /* LIBActionComponent.cpp in Sources */,
+				C77E147819A25701007CF20F /* URLParser.cpp in Sources */,
 				C7649718199E1F62000A4D51 /* LIBSuiteCSB.cpp in Sources */,
 				C764971C199E1F62000A4D51 /* LIBSuiteLayoutCSB.cpp in Sources */,
 				F957086415C90B3E00C95573 /* LIB.fr in Sources */,
 				F957086615C90B3E00C95573 /* LIBNoStrip.cpp in Sources */,
 				C77810BE199F5DF800AE3C42 /* LIBHyperlinkUtils.cpp in Sources */,
 				C764971E199E1F62000A4D51 /* LIBSuiteTextCSB.cpp in Sources */,
-				C78FB60319A0BA5000ABC576 /* LIBStringUtils.cpp in Sources */,
 				F957086715C90B3E00C95573 /* LIBID.cpp in Sources */,
 				C710C9811997C8B700CD8228 /* LIBSelectionObserver.cpp in Sources */,
 				C7649716199E1F62000A4D51 /* LIBSuiteASB.cpp in Sources */,
