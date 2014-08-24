@@ -24,6 +24,8 @@
 #include "VCPlugInHeaders.h"
 
 // Interface includes:
+#include "IAppearanceItemFacade.h"
+#include "Utils.h"
 
 // General includes:
 #include "LIBSuiteCSB.h"
@@ -38,17 +40,21 @@
  */
 bool16 LIBSuiteCSB::CanApplyLink(void)
 {
-    bool16 result = kFalse;
     UIDList items = GetTarget();
     
     if(items != nil && items.Length() == 1)
     {
-//        UIDRef itemUIDRef = items.GetRef(0);
+        UIDRef itemUIDRef = items.GetRef(0);
         
-        result = kTrue;
+        Utils<Facade::IAppearanceItemFacade> iAppearance;
+        
+        if(iAppearance->GetNumStates(itemUIDRef) > 1)
+        {
+            return kTrue;
+        }
     }
     
-    return result;
+    return kFalse;
 }
 
 /** Performs apply link on the selection returning an ErrorCode.

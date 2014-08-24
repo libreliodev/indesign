@@ -17,6 +17,8 @@
 #include "IHyperlinkDestination.h"
 #include "IHyperlinkSuite.h"
 #include "IHyperlinkTable.h"
+#include "IMediaContent.h"
+#include "IMediaSuite.h"
 #include "ILayoutUIUtils.h"
 #include "IStringListControlData.h"
 #include "ISelectionUtils.h"
@@ -33,6 +35,13 @@
 class LIBSelectionObserver : public ActiveSelectionObserver
 {
 public:
+    enum SelectionType
+	{
+		enNone,
+		enMovie,
+		enSlideshow,
+	};
+    
     // Constructor
     LIBSelectionObserver(IPMUnknown *boss);
     
@@ -58,7 +67,7 @@ private:
     void AttachWidget(IPanelControlData* panelControlData, const WidgetID& widgetID, const PMIID& interfaceID);
     void DetachWidget(IPanelControlData* panelControlData, const WidgetID& widgetID, const PMIID& interfaceID);
     void EnableWidget(const WidgetID& widgetID, bool16 enable);
-    void EnableWidgets(bool16 enable);
+    void EnableWidgets(const SelectionType type);
     IControlView* GetControl(const WidgetID& widgetID);
     bool16 GetCheckboxValue(const IControlView* checkbox);
     int32 GetDropDownIndex(const WidgetID& widgetID, const std::string& value);
@@ -186,12 +195,32 @@ UID LIBSelectionObserver::GetHyperlinkSource()
 
 void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selectionMessage)
 {
-    bool16 enable = kFalse;
+    SelectionType selectionType = enNone;
+    
     InterfacePtr<ILIBSuite> libSuite(fCurrentSelection, UseDefaultIID());
     
     if(libSuite != nil && libSuite->CanApplyLink())
     {
-        enable = kTrue;
+        selectionType = enSlideshow;
+    }
+    
+    if(selectionType == enNone)
+    {
+        InterfacePtr<IMediaSuite> mediaSuite(fCurrentSelection, UseDefaultIID());
+        
+        if(mediaSuite != nil)
+        {
+            IMediaContent::MediaType type = mediaSuite->GetMediaType();
+            
+            if(type == IMediaContent::enLegacyVideo || type == IMediaContent::enVideo)
+            {
+                selectionType = enMovie;
+            }
+        }
+    }
+    
+    if(selectionType != enNone)
+    {
         do
         {
             ErrorCode result = kFailure;
@@ -235,7 +264,7 @@ void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selec
         this->ResetWidgets();
     }
     
-    this->EnableWidgets(enable);
+    this->EnableWidgets(selectionType);
 }
 
 void LIBSelectionObserver::HandleSelectionUpdate(const ClassID& theChange, ISubject* theSubject, const PMIID& protocol, void* changedBy)
@@ -396,11 +425,24 @@ void LIBSelectionObserver::EnableWidget(const WidgetID& widgetID, bool16 enable)
     }
 }
 
-void LIBSelectionObserver::EnableWidgets(bool16 enable)
+void LIBSelectionObserver::EnableWidgets(SelectionType type)
 {
+    bool16 enable = kFalse;
+    
+    if(type == enMovie || type == enSlideshow)
+    {
+        enable = kTrue;
+    }
+    
     this->EnableWidget(kLIBTextBoxURLWidgetID, enable);
     this->EnableWidget(kLIBCheckBoxFullScreenWidgetID, enable);
     this->EnableWidget(kLIBCheckBoxAutoOpenWidgetID, enable);
+    
+    if(type == enMovie)
+    {
+        enable = kFalse;
+    }
+    
     this->EnableWidget(kLIBBackgroundDropDownWidgetID, enable);
     this->EnableWidget(kLIBTransitionDropDownWidgetID, enable);
     this->EnableWidget(kLIBTextBoxDelayWidgetID, enable);

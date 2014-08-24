@@ -57,7 +57,7 @@ resource StringTable (kSDKDefStringsResourceID + index_enUS)
 
 
 		// ----- Misc strings
-                kLIBAboutBoxStringKey,			kLIBPluginName " version " kLIBVersion " by " kLIBAuthor "\n\n" kSDKDefCopyrightStandardValue "\n\n" kSDKDefPartnersStandardValue_enUS,
+                kLIBAboutBoxStringKey,			kLIBPluginName " version " kLIBVersion " by " kLIBAuthor,
 
 		
         }

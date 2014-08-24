@@ -347,7 +347,7 @@
 		};
 		F957086E15C90B3E00C95573 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -356,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../../../../id10sdk/build/mac/packagescripts/copyResources.sh;
+			shellScript = "../../../../id10sdk/build/mac/packagescripts/copyResources.sh\ninstaller/createInstaller.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

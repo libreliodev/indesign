@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<macromedia-extension
+	 name="Librelio"
+	 version="1.0.0.0"
+	 type="object"
+	 locked="false"
+	plugin-manager-type="all-users"
+	time-stamp="0-0-0-0-0-0"
+	users-installed-for-plugin-extension="Guest;Kinanu"
+	users-enabled-for-plugin-extension="Guest;Kinanu">
+
+	<author name="Kinanu" />
+
+	<products>
+		<product name="InDesign" version="10.0" primary="true" />
+	</products>
+
+	<update  />
+
+	<description>
+	<![CDATA[
+	Librelio
+	]]>
+	</description>
+
+	<ui-access>
+	</ui-access>
+
+	<license-agreement>
+	</license-agreement>
+
+	<files>
+		<file source="Librelio.InDesignPlugin" destination="$indesign/Plug-Ins/Librelio" platform="mac" file-type="plugin" />
+	</files>
+
+	<signatures />
+
+</macromedia-extension>

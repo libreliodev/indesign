@@ -1,3 +1,4 @@
+#include "VCPlugInHeaders.h"
 #include <map>
 #include <string>
 #include <vector>
