@@ -44,14 +44,16 @@ bool16 LIBSuiteCSB::CanApplyLink(void)
     
     if(items != nil && items.Length() == 1)
     {
-        UIDRef itemUIDRef = items.GetRef(0);
+//        UIDRef itemUIDRef = items.GetRef(0);
+//        
+//        Utils<Facade::IAppearanceItemFacade> iAppearance;
+//        
+//        if(iAppearance->GetNumStates(itemUIDRef) > 1)
+//        {
+//            return kTrue;
+//        }
         
-        Utils<Facade::IAppearanceItemFacade> iAppearance;
-        
-        if(iAppearance->GetNumStates(itemUIDRef) > 1)
-        {
-            return kTrue;
-        }
+        return kTrue;
     }
     
     return kFalse;

@@ -86,6 +86,13 @@ void LIBActionComponent::DoAction(IActiveContext* ac, ActionID actionID, GSysPoi
 {
 	switch (actionID.Get())
 	{
+        case kLIBAddSlideShowActionID:
+        {
+//            CAlert::InformationAlert("Add slideshow");
+            
+            break;
+        }
+        
 
 		case kLIBPopupAboutThisActionID:
 		case kLIBAboutActionID:

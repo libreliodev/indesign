@@ -38,6 +38,7 @@ public:
     enum SelectionType
 	{
 		enNone,
+        enObject,
 		enMovie,
 		enSlideshow,
 	};
@@ -201,7 +202,7 @@ void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selec
     
     if(libSuite != nil && libSuite->CanApplyLink())
     {
-        selectionType = enSlideshow;
+        selectionType = enObject; //enSlideshow;
     }
     
     if(selectionType == enNone)
@@ -429,7 +430,7 @@ void LIBSelectionObserver::EnableWidgets(SelectionType type)
 {
     bool16 enable = kFalse;
     
-    if(type == enMovie || type == enSlideshow)
+    if(type == enMovie || type == enSlideshow || type == enObject)
     {
         enable = kTrue;
     }

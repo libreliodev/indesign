@@ -34,7 +34,7 @@
 // Plug-in:
 #define kLIBPluginName	"Librelio"			// Name of this plug-in.
 #define kLIBPrefixNumber	0x1a6f00 		// Unique prefix number for this plug-in(*Must* be obtained from Adobe Developer Support).
-#define kLIBVersion		"1.0.0.0"						// Version of this plug-in (for the About Box).
+#define kLIBVersion		"1.0.0.2"						// Version of this plug-in (for the About Box).
 #define kLIBAuthor		"Kinanu"					// Author of this plug-in (for the About Box).
 
 // Plug-in Prefix: (please change kLIBPrefixNumber above to modify the prefix.)
@@ -138,7 +138,7 @@ DECLARE_PMID(kActionIDSpace, kLIBAboutActionID, kLIBPrefix + 0)
 DECLARE_PMID(kActionIDSpace, kLIBPanelWidgetActionID, kLIBPrefix + 1)
 DECLARE_PMID(kActionIDSpace, kLIBSeparator1ActionID, kLIBPrefix + 2)
 DECLARE_PMID(kActionIDSpace, kLIBPopupAboutThisActionID, kLIBPrefix + 3)
-//DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 5)
+DECLARE_PMID(kActionIDSpace, kLIBAddSlideShowActionID, kLIBPrefix + 4)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 6)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 7)
 //DECLARE_PMID(kActionIDSpace, kLIBActionID, kLIBPrefix + 8)
@@ -217,12 +217,13 @@ DECLARE_PMID(kWidgetIDSpace, kLIBBackgroundDropDownWidgetID, kLIBPrefix + 10)
 #define kLIBBackgroundTextKey           kLIBStringPrefix    "kLIBBackgroundTextKey"
 #define kLIBWhiteTextKey                kLIBStringPrefix    "kLIBWhiteTextKey"
 #define kLIBBlackTextKey                kLIBStringPrefix    "kLIBBlackTextKey"
+#define kLIBAddSlideShowText            kLIBStringPrefix    "kLIBAddSlideShowText"
 
 // Menu item positions:
 
 #define	kLIBSeparator1MenuItemPosition		10.0
 #define kLIBAboutThisMenuItemPosition		11.0
-
+#define kLIBAddSlideShowPosition            12.0
 
 // Initial data format version numbers
 #define kLIBFirstMajorFormatNumber  RezLong(1)

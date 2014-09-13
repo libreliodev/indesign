@@ -218,6 +218,14 @@ resource MenuDef (kSDKDefMenuResourceID)
 		kLIBAboutThisMenuItemPosition,
 		kSDKDefIsNotDynamicMenuFlag,
 
+        // Add slideshow
+        /*
+        kLIBAddSlideShowActionID,
+        kLIBTargetMenuPath,
+        kLIBAddSlideShowPosition,
+        kSDKDefIsNotDynamicMenuFlag,
+        */
+        
 	}
 };
 
@@ -244,7 +252,17 @@ resource ActionDef (kSDKDefActionResourceID)
 		kDisableIfLowMem,
 		kInvalidInterfaceID,
 		kSDKDefInvisibleInKBSCEditorFlag,
-
+        
+        /*
+        kLIBActionComponentBoss,
+        kLIBAddSlideShowActionID,
+        kLIBAddSlideShowText,
+        kOtherActionArea,
+		kNormalAction,
+		kDisableIfLowMem,
+		kInvalidInterfaceID,
+		kSDKDefInvisibleInKBSCEditorFlag,
+        */
 	}
 };
 

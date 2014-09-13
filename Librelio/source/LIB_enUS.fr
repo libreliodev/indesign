@@ -54,6 +54,7 @@ resource StringTable (kSDKDefStringsResourceID + index_enUS)
                 kLIBBackgroundTextKey,          "Background",
                 kLIBWhiteTextKey,               "White",
                 kLIBBlackTextKey,               "Black",
+                kLIBAddSlideShowText,           "Add Slideshow",
 
 
 		// ----- Misc strings
