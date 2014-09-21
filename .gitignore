@@ -21,3 +21,6 @@ VersionX-revision.h
 
 # build products
 build/
+CCTest
+id9.2sdk
+id9sdk

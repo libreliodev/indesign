@@ -73,6 +73,7 @@ private:
     bool16 GetCheckboxValue(const IControlView* checkbox);
     int32 GetDropDownIndex(const WidgetID& widgetID, const std::string& value);
     UID GetHyperlinkSource();
+    SelectionType GetSelectionType(PMString& url);
     void GetValueFromTextBox(const WidgetID& widgetID, PMString& url);
     void ParseUrl(const PMString& url);
     void ResetWidgets();
@@ -253,6 +254,8 @@ void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selec
                 url = "http://";
             }
             
+            selectionType = this->GetSelectionType(url);
+            
             this->ParseUrl(url);
             
             // Do NOT notify observer
@@ -266,6 +269,22 @@ void LIBSelectionObserver::HandleSelectionChanged(const ISelectionMessage* selec
     }
     
     this->EnableWidgets(selectionType);
+}
+
+LIBSelectionObserver::SelectionType LIBSelectionObserver::GetSelectionType(PMString& url)
+{
+    url.ToLower();
+    
+    if(url.IndexOfString(".png") > 0 || url.IndexOfString(".jpg") > 0)
+    {
+        return enSlideshow;
+    }
+    else if(url.IndexOfString(".mov") > 0 || url.IndexOfString(".mp4") > 0)
+    {
+        return enMovie;
+    }
+    
+    return enObject;
 }
 
 void LIBSelectionObserver::HandleSelectionUpdate(const ClassID& theChange, ISubject* theSubject, const PMIID& protocol, void* changedBy)
@@ -436,6 +455,16 @@ void LIBSelectionObserver::EnableWidgets(SelectionType type)
     }
     
     this->EnableWidget(kLIBTextBoxURLWidgetID, enable);
+    
+    if(type == enMovie || type == enSlideshow)
+    {
+        enable = kTrue;
+    }
+    else
+    {
+        enable = kFalse;
+    }
+    
     this->EnableWidget(kLIBCheckBoxFullScreenWidgetID, enable);
     this->EnableWidget(kLIBCheckBoxAutoOpenWidgetID, enable);
     
@@ -617,6 +646,8 @@ void LIBSelectionObserver::URLWidgetValueChanged(IControlView* widgetControlView
 		}
         
         PMString url = textValue->GetString();
+        SelectionType selectionType = this->GetSelectionType(url);
+        this->EnableWidgets(selectionType);
         UID sourceUID = this->GetHyperlinkSource();
         IDocument* currentDocument = Utils<ILayoutUIUtils>()->GetFrontDocument();
         libSuite->ApplyLink(currentDocument, url, sourceUID);

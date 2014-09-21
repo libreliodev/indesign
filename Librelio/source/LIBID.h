@@ -34,7 +34,7 @@
 // Plug-in:
 #define kLIBPluginName	"Librelio"			// Name of this plug-in.
 #define kLIBPrefixNumber	0x1a6f00 		// Unique prefix number for this plug-in(*Must* be obtained from Adobe Developer Support).
-#define kLIBVersion		"1.0.0.2"						// Version of this plug-in (for the About Box).
+#define kLIBVersion		"1.0.0.3"						// Version of this plug-in (for the About Box).
 #define kLIBAuthor		"Kinanu"					// Author of this plug-in (for the About Box).
 
 // Plug-in Prefix: (please change kLIBPrefixNumber above to modify the prefix.)
